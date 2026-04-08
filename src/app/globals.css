@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- Base ---- */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: #0a0e1a;
+  color: #f0f2f8;
+}
+
+/* ---- Gradient Text Utility ---- */
+.text-gradient {
+  background: linear-gradient(135deg, #00f5c8 0%, #00d4aa 40%, #0096c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- Custom Scrollbar ---- */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0a0e1a; }
+::-webkit-scrollbar-thumb { background: #1e2540; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #2a3350; }
+
+/* ---- Scroll-triggered animations ---- */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Initial fade-up (pre-animation) ---- */
+.opacity-0-initial {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* ---- Reduced Motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animate-on-scroll { opacity: 1; transform: none; }
+  .opacity-0-initial { opacity: 1; transform: none; }
+}
