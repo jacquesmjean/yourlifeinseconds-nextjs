@@ -81,15 +81,8 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Photo */}
               <div className="flex justify-center">
-                <div className="w-full max-w-[380px] aspect-[3/4] rounded-2xl bg-gradient-to-br from-brand-card to-brand-elevated border border-subtle overflow-hidden flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-24 h-24 mx-auto rounded-full bg-accent/15 flex items-center justify-center mb-4">
-                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                    <p className="text-text-muted text-sm">Founder Photo</p>
-                  </div>
+                <div className="w-full max-w-[380px] aspect-[3/4] rounded-2xl bg-gradient-to-br from-brand-card to-brand-elevated border border-subtle overflow-hidden">
+                  <img src="/founder.png" alt="Jacques M. Jean - Founder of YourLifeInSeconds.com" className="w-full h-full object-cover" />
                 </div>
               </div>
 
