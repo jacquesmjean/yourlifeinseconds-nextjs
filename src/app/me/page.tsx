@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import LifeClockWizard, {
+import LifeClockWizard from "@/components/LifeClockWizard";
+import {
   decodeLifeClockPayload,
   type LifeClockPayload,
-} from "@/components/LifeClockWizard";
+} from "@/lib/lifeClockPayload";
 
 interface SearchParams {
   r?: string;
