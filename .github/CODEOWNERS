@@ -1,0 +1,8 @@
+# Code owners for yourlifeinseconds-nextjs
+#
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-security/customizing-your-repository/about-code-owners
+#
+# Every file in the repo is owned by @jacquesmjean by default, which
+# auto-requests his review on every pull request.
+
+* @jacquesmjean
