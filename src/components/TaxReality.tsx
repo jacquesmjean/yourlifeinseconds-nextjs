@@ -29,21 +29,68 @@ interface FormInput {
   filingStatus: 'single' | 'married' | 'head_of_household';
 }
 
-const STATE_TAX_RATES: Record<string, number> = {
-  CA: 0.133,
-  NY: 0.109,
-  TX: 0,
-  FL: 0,
-  WA: 0,
-  NJ: 0.1075,
-  IL: 0.0495,
-  PA: 0.0307,
-  OH: 0.0399,
-  GA: 0.0549,
-  CO: 0.044,
-  MA: 0.05,
-  NV: 0,
-};
+// Top marginal state income tax rates (2024 tax year).
+// These are the rates that apply to the highest income bracket — the
+// relevant figure for a $1M earner. Nine states + NH (wages) impose
+// no state income tax on earned income.
+// Rates are directional; consult a tax professional for exact liability.
+const STATES: Array<{ code: string; name: string; rate: number }> = [
+  { code: "AL", name: "Alabama", rate: 0.05 },
+  { code: "AK", name: "Alaska", rate: 0 },
+  { code: "AZ", name: "Arizona", rate: 0.025 },
+  { code: "AR", name: "Arkansas", rate: 0.044 },
+  { code: "CA", name: "California", rate: 0.133 },
+  { code: "CO", name: "Colorado", rate: 0.044 },
+  { code: "CT", name: "Connecticut", rate: 0.0699 },
+  { code: "DE", name: "Delaware", rate: 0.066 },
+  { code: "DC", name: "District of Columbia", rate: 0.1075 },
+  { code: "FL", name: "Florida", rate: 0 },
+  { code: "GA", name: "Georgia", rate: 0.0539 },
+  { code: "HI", name: "Hawaii", rate: 0.11 },
+  { code: "ID", name: "Idaho", rate: 0.058 },
+  { code: "IL", name: "Illinois", rate: 0.0495 },
+  { code: "IN", name: "Indiana", rate: 0.0305 },
+  { code: "IA", name: "Iowa", rate: 0.057 },
+  { code: "KS", name: "Kansas", rate: 0.057 },
+  { code: "KY", name: "Kentucky", rate: 0.04 },
+  { code: "LA", name: "Louisiana", rate: 0.0425 },
+  { code: "ME", name: "Maine", rate: 0.0715 },
+  { code: "MD", name: "Maryland", rate: 0.0575 },
+  { code: "MA", name: "Massachusetts", rate: 0.09 }, // 5% + 4% millionaire surtax
+  { code: "MI", name: "Michigan", rate: 0.0425 },
+  { code: "MN", name: "Minnesota", rate: 0.0985 },
+  { code: "MS", name: "Mississippi", rate: 0.047 },
+  { code: "MO", name: "Missouri", rate: 0.048 },
+  { code: "MT", name: "Montana", rate: 0.059 },
+  { code: "NE", name: "Nebraska", rate: 0.0584 },
+  { code: "NV", name: "Nevada", rate: 0 },
+  { code: "NH", name: "New Hampshire", rate: 0 },
+  { code: "NJ", name: "New Jersey", rate: 0.1075 },
+  { code: "NM", name: "New Mexico", rate: 0.059 },
+  { code: "NY", name: "New York", rate: 0.109 },
+  { code: "NC", name: "North Carolina", rate: 0.045 },
+  { code: "ND", name: "North Dakota", rate: 0.025 },
+  { code: "OH", name: "Ohio", rate: 0.035 },
+  { code: "OK", name: "Oklahoma", rate: 0.0475 },
+  { code: "OR", name: "Oregon", rate: 0.099 },
+  { code: "PA", name: "Pennsylvania", rate: 0.0307 },
+  { code: "RI", name: "Rhode Island", rate: 0.0599 },
+  { code: "SC", name: "South Carolina", rate: 0.062 },
+  { code: "SD", name: "South Dakota", rate: 0 },
+  { code: "TN", name: "Tennessee", rate: 0 },
+  { code: "TX", name: "Texas", rate: 0 },
+  { code: "UT", name: "Utah", rate: 0.0465 },
+  { code: "VT", name: "Vermont", rate: 0.0875 },
+  { code: "VA", name: "Virginia", rate: 0.0575 },
+  { code: "WA", name: "Washington", rate: 0 },
+  { code: "WV", name: "West Virginia", rate: 0.0482 },
+  { code: "WI", name: "Wisconsin", rate: 0.0765 },
+  { code: "WY", name: "Wyoming", rate: 0 },
+];
+
+const STATE_TAX_RATES: Record<string, number> = Object.fromEntries(
+  STATES.map((s) => [s.code, s.rate])
+);
 
 const calculateFederalTax = (
   income: number,
@@ -240,19 +287,11 @@ const TaxReality: React.FC = () => {
                 }
                 className="w-full rounded-lg border border-border-subtle bg-brand-input py-3 px-4 text-text-primary focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
               >
-                <option value="CA">California (13.3%)</option>
-                <option value="NY">New York (10.9%)</option>
-                <option value="TX">Texas (0%)</option>
-                <option value="FL">Florida (0%)</option>
-                <option value="WA">Washington (0%)</option>
-                <option value="NJ">New Jersey (10.75%)</option>
-                <option value="IL">Illinois (4.95%)</option>
-                <option value="PA">Pennsylvania (3.07%)</option>
-                <option value="OH">Ohio (3.99%)</option>
-                <option value="GA">Georgia (5.49%)</option>
-                <option value="CO">Colorado (4.4%)</option>
-                <option value="MA">Massachusetts (5.0%)</option>
-                <option value="NV">Nevada (0%)</option>
+                {STATES.map((s) => (
+                  <option key={s.code} value={s.code}>
+                    {s.name} ({(s.rate * 100).toFixed(s.rate === 0 ? 0 : 2)}%)
+                  </option>
+                ))}
               </select>
             </div>
 
