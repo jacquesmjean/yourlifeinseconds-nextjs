@@ -84,6 +84,7 @@ import {
   encodeLifeClockPayload,
   type LifeClockPayload,
 } from '@/lib/lifeClockPayload';
+import { encodeShortCode } from '@/lib/shortCode';
 
 const HOURLY_WORTH = 28.85;
 
@@ -295,18 +296,25 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
   };
 
   // Build a shareable URL that encodes the inputs so the recipient
-  // auto-loads the same result.
+  // auto-loads the same result. Prefers the compact /s/<code> form
+  // (8 chars), falls back to the full /me?r=<base64> for edge cases.
   const buildShareUrl = (): string => {
+    const origin =
+      typeof window !== 'undefined'
+        ? window.location.origin
+        : 'https://yourlifeinseconds.com';
+    const shortCode = encodeShortCode({
+      dob: dateOfBirth,
+      country: selectedCountry,
+      gender,
+    });
+    if (shortCode) return `${origin}/s/${shortCode}`;
     const payload = encodeLifeClockPayload({
       dob: dateOfBirth,
       tob: timeOfBirth,
       country: selectedCountry,
       gender,
     });
-    const origin =
-      typeof window !== 'undefined'
-        ? window.location.origin
-        : 'https://yourlifeinseconds.com';
     return `${origin}/me?r=${payload}`;
   };
 
