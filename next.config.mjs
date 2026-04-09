@@ -28,11 +28,42 @@ const securityHeaders = [
   },
 ];
 
+// Relaxed headers for the /embed iframe widget. CSP here allows any parent
+// page to frame it; the widget itself ships no interactive scripts.
+const embedHeaders = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  {
+    key: "Content-Security-Policy",
+    value: [
+      "default-src 'self'",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: https:",
+      "frame-ancestors *",
+      "base-uri 'self'",
+    ].join("; "),
+  },
+];
+
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      // Embed route: relaxed headers that allow framing from any origin.
+      { source: "/embed", headers: embedHeaders },
+      { source: "/embed/:path*", headers: embedHeaders },
+      // Everything else: strict security headers. Negative lookahead
+      // excludes /embed so the global X-Frame-Options: DENY doesn't leak
+      // through and block the iframe.
+      {
+        source: "/:path((?!embed$|embed/).*)",
+        headers: securityHeaders,
+      },
+      // Root path still needs the strict headers (the pattern above
+      // requires at least one character).
+      { source: "/", headers: securityHeaders },
+    ];
   },
   async redirects() {
     return [

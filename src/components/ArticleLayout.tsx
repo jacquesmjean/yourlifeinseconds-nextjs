@@ -6,7 +6,17 @@ interface ArticleLayoutProps {
   subtitle: string;
   children: React.ReactNode;
   relatedArticles: { title: string; desc: string; slug: string }[];
+  /** ISO date of publication. Defaults to the site launch date. */
+  datePublished?: string;
+  /** ISO date of last update. Defaults to datePublished. */
+  dateModified?: string;
+  /** Slug (without leading slash) for canonical URL. If omitted, canonical is the site root. */
+  slug?: string;
 }
+
+// Baseline publication date for articles without an explicit date.
+// Update per-article via the datePublished prop for better freshness signals.
+const DEFAULT_PUBLISHED = "2026-04-08";
 
 export default function ArticleLayout({
   category,
@@ -14,9 +24,43 @@ export default function ArticleLayout({
   subtitle,
   children,
   relatedArticles,
+  datePublished = DEFAULT_PUBLISHED,
+  dateModified,
+  slug,
 }: ArticleLayoutProps) {
+  const url = slug
+    ? `https://yourlifeinseconds.com/${slug}`
+    : "https://yourlifeinseconds.com/";
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description: subtitle,
+    articleSection: category,
+    datePublished,
+    dateModified: dateModified ?? datePublished,
+    author: {
+      "@type": "Person",
+      name: "Jacques M. Jean",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "YourLifeInSeconds",
+      url: "https://yourlifeinseconds.com",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    image: "https://yourlifeinseconds.com/api/og",
+  };
+
   return (
     <div className="bg-brand-bg min-h-screen pt-[120px] pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <div className="max-w-[800px] mx-auto px-6">
         {/* Back to Insights Link */}
         <Link
