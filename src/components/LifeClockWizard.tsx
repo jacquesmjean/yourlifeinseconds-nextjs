@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import LifeInWeeksGrid from '@/components/LifeInWeeksGrid';
+import LifeComparisons from '@/components/LifeComparisons';
 // Inline SVG icon components (no external dependency)
 type IconProps = { className?: string; size?: number };
 const ChevronRight = ({ className = '', size = 20 }: IconProps) => (
@@ -27,6 +29,28 @@ const Check = ({ className = '', size = 20 }: IconProps) => (
 const Zap = ({ className = '', size = 20 }: IconProps) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
 );
+const Download = ({ className = '', size = 20 }: IconProps) => (
+  <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+);
+const ShareIcon = ({ className = '', size = 20 }: IconProps) => (
+  <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+);
+
+type ShareVariant = 0 | 1 | 2;
+const SHARE_VARIANTS: { label: string; build: (remaining: string, percent: number) => string }[] = [
+  {
+    label: "Shocking",
+    build: (r) => `I have ${r} seconds left. That's less than I thought.`,
+  },
+  {
+    label: "Reflective",
+    build: (_r, p) => `I'm ${Math.round(p)}% through my life. How far are you?`,
+  },
+  {
+    label: "Direct",
+    build: (r) => `I just saw my life in seconds: ${r} left. Calculate yours.`,
+  },
+];
 
 interface CountUpValue {
   target: number;
@@ -103,7 +127,17 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
   });
 
   const [copied, setCopied] = useState(false);
+  const [shareVariant, setShareVariant] = useState<ShareVariant>(0);
+  const [downloading, setDownloading] = useState(false);
+  const [canNativeShare, setCanNativeShare] = useState(false);
   const animationFrameRef = useRef<number>();
+
+  useEffect(() => {
+    // Feature-detect Web Share API with file support.
+    if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
+      setCanNativeShare(true);
+    }
+  }, []);
 
   // Calculate adjusted life expectancy based on gender
   const getAdjustedLifeExpectancy = (baseExpectancy: number, selectedGender: string): number => {
@@ -276,12 +310,76 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
     return `${origin}/me?r=${payload}`;
   };
 
-  // Generate share text
+  // Build the OG image URL for the current result (for download + preview).
+  const buildOgUrl = (absolute = false): string => {
+    if (!results) return '/api/og';
+    const rel = `/api/og?r=${results.remainingSeconds}&p=${results.scarcityScore.toFixed(1)}`;
+    if (!absolute || typeof window === 'undefined') return rel;
+    return `${window.location.origin}${rel}`;
+  };
+
+  // Generate share text using the selected variant.
   const generateShareText = (): string => {
     if (!results) return '';
-    return `I have ${formatNumber(
-      results.remainingSeconds
-    )} seconds left. How many do you have?`;
+    return SHARE_VARIANTS[shareVariant].build(
+      formatNumber(results.remainingSeconds),
+      results.scarcityScore
+    );
+  };
+
+  // Download the OG card as a PNG the user can post to IG, TikTok, etc.
+  const handleDownload = async () => {
+    if (!results) return;
+    try {
+      setDownloading(true);
+      const res = await fetch(buildOgUrl());
+      if (!res.ok) throw new Error(`OG fetch failed: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `your-life-in-seconds-${results.remainingSeconds}.png`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('Download failed', err);
+    } finally {
+      setDownloading(false);
+    }
+  };
+
+  // Native Web Share — opens the OS share sheet. On mobile this unlocks
+  // WhatsApp, Messages, IG DMs, Threads, TikTok, etc. in a single tap.
+  const handleNativeShare = async () => {
+    if (!results || typeof navigator === 'undefined' || !navigator.share) return;
+    const text = generateShareText();
+    const url = buildShareUrl();
+    try {
+      // Try sharing with the PNG card if supported.
+      const ogRes = await fetch(buildOgUrl());
+      if (ogRes.ok && typeof navigator.canShare === 'function') {
+        const blob = await ogRes.blob();
+        const file = new File([blob], 'your-life-in-seconds.png', { type: 'image/png' });
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: 'Your Life In Seconds',
+            text,
+            url,
+            files: [file],
+          });
+          return;
+        }
+      }
+      await navigator.share({ title: 'Your Life In Seconds', text, url });
+    } catch (err) {
+      if ((err as Error).name !== 'AbortError') {
+        // eslint-disable-next-line no-console
+        console.error('Share failed', err);
+      }
+    }
   };
 
   // Share handlers
@@ -603,25 +701,84 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
               </div>
             </div>
 
-            {/* Share Buttons */}
-            <div className="rounded-lg border border-border-subtle bg-brand-card p-6">
-              <p className="text-text-secondary font-medium mb-4">Share Your Results</p>
+            {/* Life Comparisons (viral hook) */}
+            <LifeComparisons
+              remainingSeconds={results.remainingSeconds}
+              yearsRemaining={results.yearsRemaining}
+            />
+
+            {/* Life in Weeks grid (viral visualization) */}
+            <LifeInWeeksGrid
+              birthDate={results.birthTime}
+              lifeExpectancyYears={results.lifeExpectancy}
+            />
+
+            {/* Share Section */}
+            <div className="rounded-xl border border-accent-dim bg-gradient-to-br from-accent/5 to-brand-card p-6">
+              <p className="text-text-primary font-semibold mb-1">Share Your Results</p>
+              <p className="text-text-muted text-xs mb-5">
+                Pick a message, then post it anywhere.
+              </p>
+
+              {/* Variant picker */}
+              <div className="flex gap-2 mb-3 flex-wrap" role="tablist" aria-label="Share message style">
+                {SHARE_VARIANTS.map((v, i) => (
+                  <button
+                    key={v.label}
+                    role="tab"
+                    aria-selected={shareVariant === i}
+                    onClick={() => setShareVariant(i as ShareVariant)}
+                    className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-all ${
+                      shareVariant === i
+                        ? 'bg-accent text-brand-bg border-accent'
+                        : 'bg-transparent text-text-secondary border-subtle hover:border-accent-dim'
+                    }`}
+                  >
+                    {v.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Preview */}
+              <div className="bg-brand-bg border border-subtle rounded-lg p-4 mb-5">
+                <p className="text-text-primary text-sm leading-relaxed">
+                  &ldquo;{generateShareText()}&rdquo;
+                </p>
+              </div>
+
+              {/* Actions */}
               <div className="flex gap-3 flex-wrap">
+                {canNativeShare && (
+                  <button
+                    onClick={handleNativeShare}
+                    className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-accent to-accent-blue text-brand-bg px-4 py-2 font-semibold hover:shadow-glow transition-all"
+                  >
+                    <ShareIcon size={18} /> Share
+                  </button>
+                )}
+                <button
+                  onClick={handleDownload}
+                  disabled={downloading}
+                  className="flex items-center gap-2 rounded-lg bg-brand-elevated px-4 py-2 text-text-primary hover:border-accent border border-subtle transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  <Download size={18} />
+                  {downloading ? 'Preparing…' : 'Save image'}
+                </button>
                 <button
                   onClick={() => handleShare('linkedin')}
-                  className="flex items-center gap-2 rounded-lg bg-brand-elevated px-4 py-2 text-text-primary hover:bg-brand-elevated hover:border-accent border border-border-subtle transition-all"
+                  className="flex items-center gap-2 rounded-lg bg-brand-elevated px-4 py-2 text-text-primary hover:border-accent border border-subtle transition-all"
                 >
                   <Linkedin size={18} /> LinkedIn
                 </button>
                 <button
                   onClick={() => handleShare('twitter')}
-                  className="flex items-center gap-2 rounded-lg bg-brand-elevated px-4 py-2 text-text-primary hover:bg-brand-elevated hover:border-accent border border-border-subtle transition-all"
+                  className="flex items-center gap-2 rounded-lg bg-brand-elevated px-4 py-2 text-text-primary hover:border-accent border border-subtle transition-all"
                 >
                   <Twitter size={18} /> X
                 </button>
                 <button
                   onClick={() => handleShare('copy')}
-                  className="flex items-center gap-2 rounded-lg bg-brand-elevated px-4 py-2 text-text-primary hover:bg-brand-elevated hover:border-accent border border-border-subtle transition-all"
+                  className="flex items-center gap-2 rounded-lg bg-brand-elevated px-4 py-2 text-text-primary hover:border-accent border border-subtle transition-all"
                 >
                   {copied ? (
                     <>
@@ -629,7 +786,7 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
                     </>
                   ) : (
                     <>
-                      <Copy size={18} /> Copy Link
+                      <Copy size={18} /> Copy link
                     </>
                   )}
                 </button>
