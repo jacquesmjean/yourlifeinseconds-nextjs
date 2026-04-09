@@ -56,14 +56,25 @@ const COUNTRIES = [
   { name: 'Finland', code: 'FI', lifeExpectancy: 82.1 },
 ];
 
+import {
+  encodeLifeClockPayload,
+  type LifeClockPayload,
+} from '@/lib/lifeClockPayload';
+
 const HOURLY_WORTH = 28.85;
 
-export default function LifeClockWizard() {
-  const [step, setStep] = useState(1);
-  const [dateOfBirth, setDateOfBirth] = useState('');
-  const [timeOfBirth, setTimeOfBirth] = useState('12:00');
-  const [selectedCountry, setSelectedCountry] = useState('US');
-  const [gender, setGender] = useState<'male' | 'female' | 'average'>('average');
+interface LifeClockWizardProps {
+  initialPayload?: LifeClockPayload;
+}
+
+export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps = {}) {
+  const [step, setStep] = useState(initialPayload ? 2 : 1);
+  const [dateOfBirth, setDateOfBirth] = useState(initialPayload?.dob ?? '');
+  const [timeOfBirth, setTimeOfBirth] = useState(initialPayload?.tob ?? '12:00');
+  const [selectedCountry, setSelectedCountry] = useState(initialPayload?.country ?? 'US');
+  const [gender, setGender] = useState<'male' | 'female' | 'average'>(
+    initialPayload?.gender ?? 'average'
+  );
 
   const [liveSeconds, setLiveSeconds] = useState(0);
   const [results, setResults] = useState<{
@@ -124,6 +135,16 @@ export default function LifeClockWizard() {
 
     return { years, months, weeks, days, hours, minutes };
   };
+
+  // Auto-calculate if an initial payload was provided (shared link)
+  useEffect(() => {
+    if (initialPayload?.dob) {
+      // defer one tick so state is initialized
+      const t = setTimeout(() => handleCalculate(), 0);
+      return () => clearTimeout(t);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Handle calculate
   const handleCalculate = () => {
@@ -239,18 +260,34 @@ export default function LifeClockWizard() {
     return num.toLocaleString('en-US');
   };
 
+  // Build a shareable URL that encodes the inputs so the recipient
+  // auto-loads the same result.
+  const buildShareUrl = (): string => {
+    const payload = encodeLifeClockPayload({
+      dob: dateOfBirth,
+      tob: timeOfBirth,
+      country: selectedCountry,
+      gender,
+    });
+    const origin =
+      typeof window !== 'undefined'
+        ? window.location.origin
+        : 'https://yourlifeinseconds.com';
+    return `${origin}/me?r=${payload}`;
+  };
+
   // Generate share text
   const generateShareText = (): string => {
     if (!results) return '';
-    return `I just discovered I have ${formatNumber(
+    return `I have ${formatNumber(
       results.remainingSeconds
-    )} seconds left to live! 🌍 What's yours? #YourLifeInSeconds`;
+    )} seconds left. How many do you have?`;
   };
 
   // Share handlers
   const handleShare = (platform: string) => {
     const text = generateShareText();
-    const url = 'https://yourlifeinseconds.com';
+    const url = buildShareUrl();
 
     switch (platform) {
       case 'linkedin':
@@ -261,12 +298,14 @@ export default function LifeClockWizard() {
         break;
       case 'twitter':
         window.open(
-          `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
+          `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+            text
+          )}&url=${encodeURIComponent(url)}`,
           '_blank'
         );
         break;
       case 'copy':
-        navigator.clipboard.writeText(text);
+        navigator.clipboard.writeText(`${text} ${url}`);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
         break;
@@ -288,9 +327,9 @@ export default function LifeClockWizard() {
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-12 text-center">
-          <h1 className="text-gradient mb-4 text-4xl font-bold">
+          <h2 className="text-gradient mb-4 text-4xl font-bold">
             How Many Seconds Do You Have Left?
-          </h1>
+          </h2>
           <p className="text-text-secondary text-lg">
             Discover your life in seconds and make every moment count
           </p>

@@ -40,6 +40,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
       lastModified: new Date(),
     },
+    {
+      url: `${baseUrl}/privacy`,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/terms`,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+      lastModified: new Date(),
+    },
   ]
 
   const articles: MetadataRoute.Sitemap = [

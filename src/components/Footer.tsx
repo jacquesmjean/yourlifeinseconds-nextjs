@@ -89,8 +89,8 @@ export default function Footer() {
             <ul className="space-y-3 list-none">
               <li><Link href="/mission" className="text-sm text-text-secondary hover:text-accent transition-colors">About Platform</Link></li>
               <li><Link href="/about" className="text-sm text-text-secondary hover:text-accent transition-colors">Founder</Link></li>
-              <li><Link href="#" className="text-sm text-text-secondary hover:text-accent transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#" className="text-sm text-text-secondary hover:text-accent transition-colors">Terms of Service</Link></li>
+              <li><Link href="/privacy" className="text-sm text-text-secondary hover:text-accent transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="text-sm text-text-secondary hover:text-accent transition-colors">Terms of Service</Link></li>
             </ul>
           </div>
 

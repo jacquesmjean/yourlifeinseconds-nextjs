@@ -8,32 +8,10 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: '#00d4aa',
     background_color: '#0a0e1a',
     display: 'standalone',
-    icons: [
-      {
-        src: '/icons/icon-192x192.png',
-        sizes: '192x192',
-        type: 'image/png',
-        purpose: 'any',
-      },
-      {
-        src: '/icons/icon-512x512.png',
-        sizes: '512x512',
-        type: 'image/png',
-        purpose: 'any',
-      },
-      {
-        src: '/icons/icon-192x192-maskable.png',
-        sizes: '192x192',
-        type: 'image/png',
-        purpose: 'maskable',
-      },
-      {
-        src: '/icons/icon-512x512-maskable.png',
-        sizes: '512x512',
-        type: 'image/png',
-        purpose: 'maskable',
-      },
-    ],
+    start_url: '/',
+    // TODO: ship real icons to /public/icons/ then re-add them here.
+    // Icons intentionally omitted until assets exist, to avoid manifest 404s.
+    icons: [],
     categories: ['productivity', 'lifestyle'],
     orientation: 'portrait-primary',
   }
