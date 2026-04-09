@@ -6,20 +6,31 @@ export const metadata: Metadata = {
   description: 'Free calculators and planners to align your life, balance outcomes, and design your future. Tax reality, retirement, debt, investment, and more.',
 };
 
-const tools = [
+type Tool = {
+  name: string;
+  desc: string;
+  icon: string;
+  link?: string;
+  cta?: string;
+  featured?: boolean;
+  comingSoon?: boolean;
+};
+
+const tools: Tool[] = [
+  { name: "Global Life Clock", desc: "Calculate your life in seconds and see exactly how much time remains.", icon: "⏰", link: "/#life-clock", cta: "Start Life Clock", featured: true },
   { name: "$1M Tax Reality", desc: "See what you actually keep from $1 million after taxes.", icon: "💲", link: "/#tax-reality", cta: "Run the Reality Check", featured: true },
-  { name: "Currency Converter", desc: "Global rates for instant conversion.", icon: "🌐", link: "/tools", cta: "Run Simulation" },
-  { name: "Budget Planner", desc: "Track expenses and plan ahead.", icon: "📋", link: "/tools", cta: "Run Simulation" },
-  { name: "Debt Accelerator", desc: "Create your freedom plan to eliminate debt faster.", icon: "📈", link: "/tools", cta: "Run Simulation" },
-  { name: "Child Affordability", desc: "Understand the future costs of raising a child.", icon: "👶", link: "/tools", cta: "Run Simulation" },
-  { name: "Investment Basics", desc: "Start growing your wealth with confidence.", icon: "📊", link: "/tools", cta: "Run Simulation" },
-  { name: "Retirement Plan", desc: "Build future security with smart planning.", icon: "🏠", link: "/tools", cta: "Run Simulation" },
-  { name: "Family Planning", desc: "Navigate life changes with clarity.", icon: "👨‍👩‍👧", link: "/tools", cta: "Run Simulation" },
-  { name: "Relocation", desc: "Compare cities and countries for your next move.", icon: "📍", link: "/tools", cta: "Run Simulation" },
-  { name: "University ROI", desc: "Calculate the real value of education.", icon: "🎓", link: "/tools", cta: "Run Simulation" },
-  { name: "Income Potential", desc: "Model your career growth trajectory.", icon: "💼", link: "/tools", cta: "Run Simulation" },
-  { name: "Emergency Plan", desc: "Prepare for crisis survival scenarios.", icon: "🏗️", link: "/tools", cta: "Run Simulation" },
-  { name: "Resilience Score", desc: "Measure your life stability and adaptability.", icon: "🛡️", link: "/tools", cta: "Run Simulation" },
+  { name: "Currency Converter", desc: "Global rates for instant conversion.", icon: "🌐", comingSoon: true },
+  { name: "Budget Planner", desc: "Track expenses and plan ahead.", icon: "📋", comingSoon: true },
+  { name: "Debt Accelerator", desc: "Create your freedom plan to eliminate debt faster.", icon: "📈", comingSoon: true },
+  { name: "Child Affordability", desc: "Understand the future costs of raising a child.", icon: "👶", comingSoon: true },
+  { name: "Investment Basics", desc: "Start growing your wealth with confidence.", icon: "📊", comingSoon: true },
+  { name: "Retirement Plan", desc: "Build future security with smart planning.", icon: "🏠", comingSoon: true },
+  { name: "Family Planning", desc: "Navigate life changes with clarity.", icon: "👨‍👩‍👧", comingSoon: true },
+  { name: "Relocation", desc: "Compare cities and countries for your next move.", icon: "📍", comingSoon: true },
+  { name: "University ROI", desc: "Calculate the real value of education.", icon: "🎓", comingSoon: true },
+  { name: "Income Potential", desc: "Model your career growth trajectory.", icon: "💼", comingSoon: true },
+  { name: "Emergency Plan", desc: "Prepare for crisis survival scenarios.", icon: "🏗️", comingSoon: true },
+  { name: "Resilience Score", desc: "Measure your life stability and adaptability.", icon: "🛡️", comingSoon: true },
 ];
 
 export default function ToolsPage() {
@@ -42,30 +53,45 @@ export default function ToolsPage() {
       <section className="py-16 bg-brand-bg">
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {tools.map((tool) => (
-              <div
-                key={tool.name}
-                className={`bg-brand-card border rounded-xl p-6 hover:border-accent-dim hover:-translate-y-1 transition-all relative group ${
-                  tool.featured ? 'border-accent-dim sm:col-span-2' : 'border-subtle'
-                }`}
-              >
-                {tool.featured && (
-                  <span className="absolute top-4 right-4 inline-flex items-center gap-1 bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full border border-accent/20">
-                    ⭐ Featured
-                  </span>
-                )}
-                <div className="text-3xl mb-4">{tool.icon}</div>
-                <h3 className="text-lg font-bold mb-2 text-text-primary">{tool.name}</h3>
-                <p className="text-text-secondary text-sm mb-4 leading-relaxed">{tool.desc}</p>
-                <Link
-                  href={tool.link}
-                  className="inline-flex items-center gap-1 text-accent text-sm font-semibold hover:gap-2 transition-all"
-                >
-                  {tool.cta}
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </Link>
-              </div>
-            ))}
+            {tools.map((tool) => {
+              const base = `bg-brand-card border rounded-xl p-6 relative group ${
+                tool.featured ? 'border-accent-dim sm:col-span-2' : 'border-subtle'
+              }`;
+              const hover = tool.comingSoon
+                ? 'opacity-60'
+                : 'hover:border-accent-dim hover:-translate-y-1 transition-all';
+
+              return (
+                <div key={tool.name} className={`${base} ${hover}`}>
+                  {tool.featured && (
+                    <span className="absolute top-4 right-4 inline-flex items-center gap-1 bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full border border-accent/20">
+                      Featured
+                    </span>
+                  )}
+                  {tool.comingSoon && (
+                    <span className="absolute top-4 right-4 inline-flex items-center gap-1 bg-text-muted/10 text-text-muted text-[10px] font-mono font-semibold px-2 py-1 rounded-full border border-subtle tracking-wider uppercase">
+                      Coming Soon
+                    </span>
+                  )}
+                  <div className="text-3xl mb-4">{tool.icon}</div>
+                  <h3 className="text-lg font-bold mb-2 text-text-primary">{tool.name}</h3>
+                  <p className="text-text-secondary text-sm mb-4 leading-relaxed">{tool.desc}</p>
+                  {tool.comingSoon ? (
+                    <span className="inline-flex items-center gap-1 text-text-muted text-sm font-medium cursor-not-allowed">
+                      In development
+                    </span>
+                  ) : (
+                    <Link
+                      href={tool.link!}
+                      className="inline-flex items-center gap-1 text-accent text-sm font-semibold hover:gap-2 transition-all"
+                    >
+                      {tool.cta}
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -81,7 +107,7 @@ export default function ToolsPage() {
             {[
               { icon: '⏱', title: 'I want clarity on my life', desc: 'Understand your time, weeks remaining, and life allocation.', cta: 'Calculate My Life', link: '/#life-clock', primary: true },
               { icon: '💰', title: 'I want to understand my money', desc: 'See the real cost of your decisions and true tax impact.', cta: 'Run Simulation', link: '/#tax-reality', primary: false },
-              { icon: '📈', title: 'I want to optimize my future', desc: 'Model your investments, debt payoff, and income potential.', cta: 'Run Simulation', link: '/tools', primary: false },
+              { icon: '📈', title: 'I want to optimize my future', desc: 'Deep-dive articles on what actually moves the needle.', cta: 'Read Insights', link: '/insights', primary: false },
             ].map((entry) => (
               <div key={entry.title} className="bg-brand-card border border-subtle rounded-xl p-8 flex flex-col">
                 <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-2xl mb-6">{entry.icon}</div>
