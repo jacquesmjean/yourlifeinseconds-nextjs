@@ -1,15 +1,16 @@
 "use server";
 
-// Subscribe action. Wires to Resend Audiences if RESEND_API_KEY + RESEND_AUDIENCE_ID
-// are set, otherwise returns a configuration error so we never show a fake
-// success state to the user.
+// Subscribe action. Wires to Resend Audiences.
 //
-// To enable:
+// Setup (one env var — audience is auto-discovered):
 //   1. Sign up at https://resend.com and create an Audience
-//   2. Set env vars in your host (Vercel, etc.):
-//        RESEND_API_KEY=re_xxx
-//        RESEND_AUDIENCE_ID=aud_xxx
-//   3. Redeploy
+//   2. Create a Full Access API key
+//   3. Set in Vercel: RESEND_API_KEY=re_xxx
+//   4. Redeploy
+//
+// Optional: set RESEND_AUDIENCE_ID to pin a specific audience. If unset,
+// we call GET /audiences on the first invocation and cache the first
+// audience's ID in module scope for the life of the server instance.
 
 export type SubscribeResult =
   | { ok: true }
@@ -17,6 +18,33 @@ export type SubscribeResult =
 
 const EMAIL_RE =
   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+// Simple in-memory cache so we don't hit /audiences on every submission.
+let cachedAudienceId: string | null = null;
+
+async function resolveAudienceId(apiKey: string): Promise<string | null> {
+  if (process.env.RESEND_AUDIENCE_ID) return process.env.RESEND_AUDIENCE_ID;
+  if (cachedAudienceId) return cachedAudienceId;
+
+  try {
+    const res = await fetch("https://api.resend.com/audiences", {
+      headers: { Authorization: `Bearer ${apiKey}` },
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    const json = (await res.json()) as {
+      data?: Array<{ id: string; name?: string }>;
+    };
+    const first = json.data?.[0]?.id;
+    if (first) {
+      cachedAudienceId = first;
+      return first;
+    }
+  } catch {
+    // swallow — return null and let caller surface a generic error
+  }
+  return null;
+}
 
 export async function subscribe(formData: FormData): Promise<SubscribeResult> {
   // Honeypot — bots fill every field.
@@ -35,14 +63,19 @@ export async function subscribe(formData: FormData): Promise<SubscribeResult> {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const audienceId = process.env.RESEND_AUDIENCE_ID;
+  if (!apiKey) {
+    return {
+      ok: false,
+      error: "Email signup isn't configured yet. Please try again later.",
+    };
+  }
 
-  if (!apiKey || !audienceId) {
-    // Do not lie to the user. Return an error so the UI can show it.
+  const audienceId = await resolveAudienceId(apiKey);
+  if (!audienceId) {
     return {
       ok: false,
       error:
-        "Email signup isn't configured yet. Please try again later.",
+        "Couldn't reach the email service. Please try again in a moment.",
     };
   }
 
