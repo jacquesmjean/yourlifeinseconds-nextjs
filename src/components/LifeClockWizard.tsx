@@ -57,6 +57,13 @@ interface CountUpValue {
   current: number;
 }
 
+// Light haptic pulse for touch feedback on mobile.
+const haptic = (ms = 10) => {
+  if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+    try { navigator.vibrate(ms); } catch { /* noop */ }
+  }
+};
+
 const COUNTRIES = [
   { name: 'United States', code: 'US', lifeExpectancy: 78.9 },
   { name: 'United Kingdom', code: 'GB', lifeExpectancy: 81.2 },
@@ -138,6 +145,23 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
     if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
       setCanNativeShare(true);
     }
+  }, []);
+
+  // Auto-detect country via server-side geo proxy (progressive enhancement).
+  useEffect(() => {
+    if (initialPayload?.country) return; // shared link already set
+    const controller = new AbortController();
+    fetch('/api/geo', { signal: controller.signal })
+      .then((r) => r.json())
+      .then((data: { country: string | null }) => {
+        if (data.country) {
+          const match = COUNTRIES.find((c) => c.code === data.country);
+          if (match) setSelectedCountry(match.code);
+        }
+      })
+      .catch(() => { /* keep default */ });
+    return () => controller.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Calculate adjusted life expectancy based on gender
@@ -338,6 +362,7 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
   // Download the OG card as a PNG the user can post to IG, TikTok, etc.
   const handleDownload = async () => {
     if (!results) return;
+    haptic();
     try {
       setDownloading(true);
       const res = await fetch(buildOgUrl());
@@ -363,6 +388,7 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
   // WhatsApp, Messages, IG DMs, Threads, TikTok, etc. in a single tap.
   const handleNativeShare = async () => {
     if (!results || typeof navigator === 'undefined' || !navigator.share) return;
+    haptic();
     const text = generateShareText();
     const url = buildShareUrl();
     try {
@@ -392,6 +418,7 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
 
   // Share handlers
   const handleShare = (platform: string) => {
+    haptic();
     const text = generateShareText();
     const url = buildShareUrl();
 
@@ -516,9 +543,9 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
 
               {/* Continue Button */}
               <button
-                onClick={() => setStep(2)}
+                onClick={() => { haptic(); setStep(2); }}
                 disabled={!dateOfBirth}
-                className={`mt-8 w-full rounded-lg py-3 font-semibold transition-all flex items-center justify-center gap-2 ${
+                className={`press-active mt-8 w-full rounded-lg py-3 font-semibold transition-all flex items-center justify-center gap-2 ${
                   dateOfBirth
                     ? 'bg-gradient-to-r from-accent to-accent-bright text-brand-bg hover:shadow-glow-strong'
                     : 'bg-brand-elevated text-text-muted cursor-not-allowed'
@@ -598,8 +625,8 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
                   <ChevronLeft size={20} /> Back
                 </button>
                 <button
-                  onClick={handleCalculate}
-                  className="flex-1 rounded-lg bg-gradient-to-r from-accent to-accent-bright py-3 font-semibold text-brand-bg hover:shadow-glow-strong transition-all flex items-center justify-center gap-2"
+                  onClick={() => { haptic(); handleCalculate(); }}
+                  className="press-active flex-1 rounded-lg bg-gradient-to-r from-accent to-accent-bright py-3 font-semibold text-brand-bg hover:shadow-glow-strong transition-all flex items-center justify-center gap-2"
                 >
                   Calculate My Life <Zap size={20} />
                 </button>
@@ -627,7 +654,7 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
             {/* Metric Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Seconds Used */}
-              <div className="rounded-lg border border-border-subtle bg-brand-card p-6">
+              <div className="rounded-lg border border-border-subtle backdrop-blur-md bg-brand-card/80 p-6">
                 <p className="text-text-secondary mb-2 text-sm font-medium">
                   Seconds Used
                 </p>
@@ -637,7 +664,7 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
               </div>
 
               {/* Seconds Remaining */}
-              <div className="rounded-lg border border-border-subtle bg-brand-card p-6">
+              <div className="rounded-lg border border-border-subtle backdrop-blur-md bg-brand-card/80 p-6">
                 <p className="text-text-secondary mb-2 text-sm font-medium">
                   Seconds Remaining
                 </p>
@@ -647,7 +674,7 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
               </div>
 
               {/* Time Scarcity Score */}
-              <div className="rounded-lg border border-border-subtle bg-brand-card p-6">
+              <div className="rounded-lg border border-border-subtle backdrop-blur-md bg-brand-card/80 p-6">
                 <p className="text-text-secondary mb-2 text-sm font-medium">
                   Time Scarcity Score
                 </p>
@@ -657,7 +684,7 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
               </div>
 
               {/* Hourly Worth */}
-              <div className="rounded-lg border border-border-subtle bg-brand-card p-6">
+              <div className="rounded-lg border border-border-subtle backdrop-blur-md bg-brand-card/80 p-6">
                 <p className="text-text-secondary mb-2 text-sm font-medium">
                   Hourly Worth
                 </p>

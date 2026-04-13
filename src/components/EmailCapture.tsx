@@ -45,6 +45,7 @@ export default function EmailCapture({ variant = "inline" }: EmailCaptureProps) 
         <input
           type="email"
           name="email"
+          autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
@@ -60,7 +61,7 @@ export default function EmailCapture({ variant = "inline" }: EmailCaptureProps) 
           disabled={isPending}
           className={`${
             variant === "banner" ? "px-6 whitespace-nowrap" : "w-full"
-          } bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-bold py-3 rounded-lg hover:shadow-glow transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed`}
+          } press-active bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-bold py-3 rounded-lg hover:shadow-glow transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed`}
         >
           {isPending ? "Subscribing…" : "Subscribe →"}
         </button>
