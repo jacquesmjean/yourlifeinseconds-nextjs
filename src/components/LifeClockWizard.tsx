@@ -456,7 +456,7 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
   };
 
   return (
-    <section id="life-clock" className="min-h-screen bg-brand-bg py-12 px-4 sm:px-6 lg:px-8">
+    <section id="life-clock" className="bg-brand-bg py-16 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-12 text-center">
