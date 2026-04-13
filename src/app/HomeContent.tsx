@@ -107,7 +107,7 @@ export default function HomeContent() {
               Unlock a perspective on life that numbers alone can reveal.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-on-scroll">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 num: '01',
@@ -154,7 +154,7 @@ export default function HomeContent() {
               Two tools. Zero fluff. Just the numbers that actually matter.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-on-scroll">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gradient-to-br from-accent/5 to-brand-card border border-accent-dim rounded-xl p-8 relative">
               <h3 className="text-2xl font-bold mb-3">Global Life Clock</h3>
               <p className="text-text-secondary mb-6 leading-relaxed">
@@ -226,7 +226,7 @@ export default function HomeContent() {
               Popular <span className="text-gradient">Time Questions</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-on-scroll">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { num: '31,536,000', label: 'Seconds in a Year' },
               { num: '~2.5B', label: 'Avg. Lifetime Seconds' },
@@ -270,7 +270,7 @@ export default function HomeContent() {
               Articles Worth Your <span className="text-gradient">Time</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-on-scroll">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 title: 'Where Your Life Actually Goes',
@@ -326,7 +326,7 @@ export default function HomeContent() {
       {/* Final CTA */}
       <section className="py-20">
         <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center p-16 bg-gradient-to-br from-accent/8 to-accent-blue/5 border border-accent-dim rounded-2xl animate-on-scroll">
+          <div className="text-center p-16 bg-gradient-to-br from-accent/8 to-accent-blue/5 border border-accent-dim rounded-2xl">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
               Your Time Is <span className="text-gradient">Running Out.</span>
             </h2>
