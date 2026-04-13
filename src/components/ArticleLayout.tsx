@@ -33,26 +33,45 @@ export default function ArticleLayout({
     : "https://yourlifeinseconds.com/";
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: title,
-    description: subtitle,
-    articleSection: category,
-    datePublished,
-    dateModified: dateModified ?? datePublished,
-    author: {
-      "@type": "Person",
-      name: "Jacques M. Jean",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "YourLifeInSeconds",
-      url: "https://yourlifeinseconds.com",
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": url,
-    },
-    image: "https://yourlifeinseconds.com/api/og",
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: title,
+        description: subtitle,
+        articleSection: category,
+        datePublished,
+        dateModified: dateModified ?? datePublished,
+        author: {
+          "@type": "Person",
+          name: "Jacques M. Jean",
+          url: "https://yourlifeinseconds.com/about",
+          sameAs: [
+            "https://x.com/yourlifeinseconds",
+            "https://instagram.com/yourlifeinseconds",
+            "https://linkedin.com/company/yourlifeinseconds",
+          ],
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "YourLifeInSeconds",
+          url: "https://yourlifeinseconds.com",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://yourlifeinseconds.com/api/og",
+          },
+        },
+        mainEntityOfPage: { "@type": "WebPage", "@id": url },
+        image: "https://yourlifeinseconds.com/api/og",
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://yourlifeinseconds.com" },
+          { "@type": "ListItem", position: 2, name: "Insights", item: "https://yourlifeinseconds.com/insights" },
+          { "@type": "ListItem", position: 3, name: title },
+        ],
+      },
+    ],
   };
 
   return (

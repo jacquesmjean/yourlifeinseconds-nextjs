@@ -45,6 +45,14 @@ body {
   transform: translateY(30px);
 }
 
+/* ---- Press Feedback ---- */
+.press-active {
+  transition: transform 0.1s ease;
+}
+.press-active:active {
+  transform: scale(0.97);
+}
+
 /* ---- Reduced Motion ---- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

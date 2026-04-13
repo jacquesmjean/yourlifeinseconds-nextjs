@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Jacques M. Jean — Founder | YourLifeInSeconds",
@@ -82,7 +83,7 @@ export default function AboutPage() {
               {/* Photo */}
               <div className="flex justify-center">
                 <div className="w-full max-w-[380px] aspect-[3/4] rounded-2xl bg-gradient-to-br from-brand-card to-brand-elevated border border-subtle overflow-hidden">
-                  <img src="/founder.png" alt="Jacques M. Jean - Founder of YourLifeInSeconds.com" className="w-full h-full object-cover" />
+                  <Image src="/founder.png" alt="Jacques M. Jean - Founder of YourLifeInSeconds.com" width={380} height={507} quality={75} sizes="(max-width: 768px) 100vw, 380px" className="w-full h-full object-cover" />
                 </div>
               </div>
 

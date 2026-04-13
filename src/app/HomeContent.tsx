@@ -1,88 +1,13 @@
 'use client';
 
-import Script from 'next/script';
 import Link from 'next/link';
 import LifeClockWizard from '@/components/LifeClockWizard';
 import TaxReality from '@/components/TaxReality';
 import EmailCapture from '@/components/EmailCapture';
 
 export default function HomeContent() {
-  const schemaMarkup = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'SoftwareApplication',
-        name: 'YourLifeInSeconds Life Clock',
-        description:
-          'Calculate your life in seconds and discover the true scarcity of time.',
-        applicationCategory: 'ProductivityApplication',
-        operatingSystem: 'Web',
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      },
-      {
-        '@type': 'HowTo',
-        name: 'How to Calculate Your Life in Seconds',
-        step: [
-          {
-            '@type': 'HowToStep',
-            position: '1',
-            name: 'Enter Birthday',
-            text: 'Input your birth date into the Life Clock calculator.',
-          },
-          {
-            '@type': 'HowToStep',
-            position: '2',
-            name: 'Choose Region',
-            text: 'Select your country so we can apply the right life expectancy.',
-          },
-          {
-            '@type': 'HowToStep',
-            position: '3',
-            name: 'See Your Results',
-            text: 'Receive your personalized seconds remaining and time breakdown.',
-          },
-        ],
-      },
-      {
-        '@type': 'FAQPage',
-        mainEntity: [
-          {
-            '@type': 'Question',
-            name: 'How many seconds are in a lifetime?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'An average 80-year lifespan contains approximately 2,522,880,000 seconds.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'How many seconds are in a year?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'There are 31,536,000 seconds in a standard 365-day year.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Is YourLifeInSeconds free?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Yes. The Life Clock and Tax Reality calculators are free. Your data stays in your browser.',
-            },
-          },
-        ],
-      },
-    ],
-  };
-
   return (
     <>
-      <Script
-        id="schema-markup"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaMarkup) }}
-      />
-
       <style jsx>{`
         @keyframes clock-rotate {
           from { transform: rotate(0deg); }
@@ -126,13 +51,13 @@ export default function HomeContent() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link
                   href="#life-clock"
-                  className="px-8 py-4 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-semibold rounded-lg hover:shadow-glow transition-shadow text-center"
+                  className="press-active px-8 py-4 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-semibold rounded-lg hover:shadow-glow transition-shadow text-center"
                 >
                   Calculate My Life
                 </Link>
                 <Link
                   href="#how-it-works"
-                  className="px-8 py-4 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors text-center"
+                  className="press-active px-8 py-4 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors text-center"
                 >
                   See How It Works
                 </Link>
@@ -182,7 +107,7 @@ export default function HomeContent() {
               Unlock a perspective on life that numbers alone can reveal.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-on-scroll">
             {[
               {
                 num: '01',
@@ -202,7 +127,7 @@ export default function HomeContent() {
             ].map((step) => (
               <div
                 key={step.num}
-                className="bg-brand-card border border-subtle rounded-xl p-8 hover:border-accent-dim hover:-translate-y-1 transition-all relative"
+                className="backdrop-blur-md bg-brand-card/80 border border-subtle rounded-xl p-8 hover:border-accent-dim hover:-translate-y-1 transition-all relative"
               >
                 <span className="absolute top-4 right-6 text-5xl font-bold font-mono text-accent/10">
                   {step.num}
@@ -229,7 +154,7 @@ export default function HomeContent() {
               Two tools. Zero fluff. Just the numbers that actually matter.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-on-scroll">
             <div className="bg-gradient-to-br from-accent/5 to-brand-card border border-accent-dim rounded-xl p-8 relative">
               <h3 className="text-2xl font-bold mb-3">Global Life Clock</h3>
               <p className="text-text-secondary mb-6 leading-relaxed">
@@ -251,7 +176,7 @@ export default function HomeContent() {
               </div>
               <Link
                 href="#life-clock"
-                className="block w-full px-6 py-3 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-semibold rounded-lg hover:shadow-glow transition-shadow text-center"
+                className="press-active block w-full px-6 py-3 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-semibold rounded-lg hover:shadow-glow transition-shadow text-center"
               >
                 Start Life Clock
               </Link>
@@ -277,7 +202,7 @@ export default function HomeContent() {
               </div>
               <Link
                 href="#tax-reality"
-                className="block w-full px-6 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors text-center"
+                className="press-active block w-full px-6 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors text-center"
               >
                 Calculate Tax Reality
               </Link>
@@ -301,7 +226,7 @@ export default function HomeContent() {
               Popular <span className="text-gradient">Time Questions</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-on-scroll">
             {[
               { num: '31,536,000', label: 'Seconds in a Year' },
               { num: '~2.5B', label: 'Avg. Lifetime Seconds' },
@@ -309,7 +234,7 @@ export default function HomeContent() {
               { num: '26 yrs', label: 'Spent Sleeping' },
             ].map((item) => (
               <Link href="/insights" key={item.label}>
-                <div className="bg-brand-card border border-subtle rounded-xl p-8 hover:border-accent-dim hover:-translate-y-1 hover:shadow-glow transition-all">
+                <div className="backdrop-blur-md bg-brand-card/80 border border-subtle rounded-xl p-8 hover:border-accent-dim hover:-translate-y-1 hover:shadow-glow transition-all">
                   <p className="text-4xl font-bold text-accent font-mono mb-4">{item.num}</p>
                   <h3 className="font-bold text-text-primary">{item.label}</h3>
                 </div>
@@ -319,7 +244,7 @@ export default function HomeContent() {
           <div className="text-center mt-10">
             <Link
               href="/insights"
-              className="px-6 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors inline-block"
+              className="press-active px-6 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors inline-block"
             >
               Explore All Insights
             </Link>
@@ -345,7 +270,7 @@ export default function HomeContent() {
               Articles Worth Your <span className="text-gradient">Time</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-on-scroll">
             {[
               {
                 title: 'Where Your Life Actually Goes',
@@ -390,7 +315,7 @@ export default function HomeContent() {
           <div className="text-center mt-10">
             <Link
               href="/insights"
-              className="px-6 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors inline-block"
+              className="press-active px-6 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors inline-block"
             >
               Explore All Deep Dives →
             </Link>
@@ -401,7 +326,7 @@ export default function HomeContent() {
       {/* Final CTA */}
       <section className="py-20">
         <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center p-16 bg-gradient-to-br from-accent/8 to-accent-blue/5 border border-accent-dim rounded-2xl">
+          <div className="text-center p-16 bg-gradient-to-br from-accent/8 to-accent-blue/5 border border-accent-dim rounded-2xl animate-on-scroll">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
               Your Time Is <span className="text-gradient">Running Out.</span>
             </h2>
@@ -411,7 +336,7 @@ export default function HomeContent() {
             </p>
             <Link
               href="#life-clock"
-              className="px-10 py-4 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-bold text-lg rounded-lg hover:shadow-glow transition-shadow inline-block"
+              className="press-active px-10 py-4 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-bold text-lg rounded-lg hover:shadow-glow transition-shadow inline-block"
             >
               Start My Life Clock Now
             </Link>
