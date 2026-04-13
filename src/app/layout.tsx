@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
+// import ScrollReveal from "@/components/ScrollReveal"; // disabled: causing invisible sections on production
 import "./globals.css";
 
 const inter = Inter({
@@ -71,7 +71,6 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
-        <ScrollReveal />
       </body>
     </html>
   );
