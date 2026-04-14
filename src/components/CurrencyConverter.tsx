@@ -54,15 +54,16 @@ const CurrencyConverter: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(
-        `https://api.exchangerate.host/latest?base=${base}`
-      );
+      const res = await fetch(`/api/fx?base=${base}`);
       if (!res.ok) throw new Error('Request failed');
       const data = await res.json();
       if (!data || !data.rates) throw new Error('Invalid response');
       setRates(data.rates as Rates);
-      setLastUpdated(data.date || new Date().toISOString().slice(0, 10));
-    } catch (e) {
+      const updatedDate = data.updated
+        ? new Date(data.updated * 1000).toISOString().slice(0, 10)
+        : new Date().toISOString().slice(0, 10);
+      setLastUpdated(updatedDate);
+    } catch {
       setError('Unable to fetch live rates — try again.');
       setRates(null);
     } finally {
