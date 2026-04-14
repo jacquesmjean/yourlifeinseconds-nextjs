@@ -23,6 +23,8 @@ const tools: Tool[] = [
   { name: "Budget Planner", desc: "Track expenses and plan ahead.", icon: "📋", link: "/tools/budget-planner", cta: "Plan My Budget" },
   { name: "Debt Accelerator", desc: "Create your freedom plan to eliminate debt faster.", icon: "📈", link: "/tools/debt-accelerator", cta: "Crush My Debt" },
   { name: "Child Affordability", desc: "Understand the future costs of raising a child.", icon: "👶", link: "/tools/child-affordability", cta: "Calculate Cost" },
+  { name: "Rent vs Buy", desc: "Know when buying beats renting — year by year.", icon: "🏠", link: "/tools/rent-vs-buy", cta: "Run the Math" },
+  { name: "Mortgage Payoff", desc: "See how much faster (and cheaper) you can crush your mortgage.", icon: "🔑", link: "/tools/mortgage-payoff", cta: "Accelerate Payoff" },
   { name: "Investment Basics", desc: "Start growing your wealth with confidence.", icon: "📊", comingSoon: true },
   { name: "Retirement Plan", desc: "Build future security with smart planning.", icon: "🏠", comingSoon: true },
   { name: "Family Planning", desc: "Navigate life changes with clarity.", icon: "👨‍👩‍👧", comingSoon: true },

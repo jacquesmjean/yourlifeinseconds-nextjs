@@ -59,6 +59,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/budget-planner',
     '/tools/debt-accelerator',
     '/tools/child-affordability',
+    '/tools/rent-vs-buy',
+    '/tools/mortgage-payoff',
   ].map((slug) => ({
     url: `${baseUrl}${slug}`,
     changeFrequency: 'weekly' as const,
