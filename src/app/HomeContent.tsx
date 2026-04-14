@@ -24,7 +24,7 @@ export default function HomeContent() {
       {/* Hero Section */}
       <section
         id="hero"
-        className="bg-gradient-to-b from-brand-bg via-brand-bg to-brand-bg-secondary flex items-center relative overflow-hidden pt-[72px] pb-20"
+        className="bg-gradient-to-b from-brand-bg via-brand-bg to-brand-bg-secondary flex items-center relative overflow-hidden pt-32 sm:pt-36 pb-20"
       >
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full blur-3xl" />
