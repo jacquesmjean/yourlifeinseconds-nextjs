@@ -54,6 +54,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
+  const toolPages: MetadataRoute.Sitemap = [
+    '/tools/currency-converter',
+    '/tools/budget-planner',
+    '/tools/debt-accelerator',
+    '/tools/child-affordability',
+  ].map((slug) => ({
+    url: `${baseUrl}${slug}`,
+    changeFrequency: 'weekly' as const,
+    priority: 0.85,
+    lastModified: new Date(),
+  }))
+
   const articles: MetadataRoute.Sitemap = [
     '/where-your-life-actually-goes',
     '/psychology-of-work',
@@ -76,5 +88,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }))
 
-  return [...staticPages, ...articles]
+  return [...staticPages, ...toolPages, ...articles]
 }
