@@ -156,7 +156,7 @@ export default function DegreeInSeconds() {
               <div className="bg-brand-card border border-subtle rounded-xl p-5">
                 <p className="text-xs font-mono font-semibold tracking-widest uppercase text-text-muted mb-2">OPPORTUNITY COST</p>
                 <p className="text-2xl font-bold font-mono text-text-primary">{formatUSD(result.opportunityCost)}</p>
-                <p className="text-xs text-text-muted mt-1">Wages you didn't earn.</p>
+                <p className="text-xs text-text-muted mt-1">Wages you didn&apos;t earn.</p>
               </div>
               <div className="bg-brand-card border border-status-warning/30 rounded-xl p-5">
                 <p className="text-xs font-mono font-semibold tracking-widest uppercase text-status-warning mb-2">INTEREST SECONDS</p>
@@ -177,20 +177,20 @@ export default function DegreeInSeconds() {
                   <span className="text-sm text-text-muted ml-2">(age {Math.round(result.breakevenAge)})</span>
                 </p>
                 <p className="text-xs text-text-muted mt-2">
-                  The year the degree's earnings premium finally exceeds everything you paid (tuition + interest + lost wages).
+                  The year the degree&apos;s earnings premium finally exceeds everything you paid (tuition + interest + lost wages).
                 </p>
               </div>
             ) : (
               <div className="bg-status-warning/5 border border-status-warning/30 rounded-xl p-6">
                 <p className="text-sm text-text-secondary">
-                  At these numbers, the degree never breaks even — the salary uplift doesn't cover the full cost before retirement.
+                  At these numbers, the degree never breaks even — the salary uplift doesn&apos;t cover the full cost before retirement.
                 </p>
               </div>
             )}
 
             {/* Context */}
             <div className="bg-gradient-to-br from-accent/5 to-transparent border border-subtle rounded-xl p-6">
-              <h3 className="text-sm font-bold text-text-primary mb-3">What this doesn't capture</h3>
+              <h3 className="text-sm font-bold text-text-primary mb-3">What this doesn&apos;t capture</h3>
               <ul className="space-y-1.5 text-xs text-text-muted">
                 <li>• Career optionality — some roles simply require the credential.</li>
                 <li>• Network, meaning, and identity — real, but not measurable here.</li>
@@ -212,7 +212,7 @@ export default function DegreeInSeconds() {
                 href="/degree-doesnt-owe-you-a-life"
                 className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-subtle text-text-primary px-6 py-3 rounded-lg font-semibold hover:border-accent-dim transition-colors"
               >
-                Read "The Degree Doesn't Owe You a Life"
+                Read &quot;The Degree Doesn&apos;t Owe You a Life&quot;
               </Link>
             </div>
           </div>

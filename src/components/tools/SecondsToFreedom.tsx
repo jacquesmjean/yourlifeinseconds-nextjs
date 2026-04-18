@@ -122,7 +122,7 @@ export default function SecondsToFreedom() {
                     {formatCompactSeconds(result.seconds)}
                   </p>
                   <p className="text-text-secondary text-sm">
-                    That's <strong className="text-text-primary">{result.years.toFixed(1)} years</strong> — you'd reach FI at <strong className="text-text-primary">age {Math.round(result.fiAge)}</strong>.
+                    That&apos;s <strong className="text-text-primary">{result.years.toFixed(1)} years</strong> — you&apos;d reach FI at <strong className="text-text-primary">age {Math.round(result.fiAge)}</strong>.
                   </p>
                 </div>
 
@@ -150,8 +150,8 @@ export default function SecondsToFreedom() {
                       <h3 className="font-bold text-accent">Add $500/mo to contributions?</h3>
                     </div>
                     <p className="text-sm text-text-secondary">
-                      You'd reach freedom <strong className="text-accent font-mono">{result.yearsSaved.toFixed(1)} years earlier</strong>.
-                      That's <strong className="text-text-primary">{formatCompactSeconds(result.yearsSaved * 365.25 * 86400)} seconds</strong> of your life back — at the end when they're worth the most.
+                      You&apos;d reach freedom <strong className="text-accent font-mono">{result.yearsSaved.toFixed(1)} years earlier</strong>.
+                      That&apos;s <strong className="text-text-primary">{formatCompactSeconds(result.yearsSaved * 365.25 * 86400)} seconds</strong> of your life back — at the end when they&apos;re worth the most.
                     </p>
                   </div>
                 )}
@@ -171,7 +171,7 @@ export default function SecondsToFreedom() {
                 href="/freedom-is-a-math-problem"
                 className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-subtle text-text-primary px-6 py-3 rounded-lg font-semibold hover:border-accent-dim transition-colors"
               >
-                Read "Freedom Is a Math Problem"
+                Read &quot;Freedom Is a Math Problem&quot;
               </Link>
             </div>
           </div>

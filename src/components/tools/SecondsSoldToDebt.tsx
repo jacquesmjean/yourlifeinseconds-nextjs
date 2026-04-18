@@ -140,7 +140,7 @@ export default function SecondsSoldToDebt() {
                     {formatCompactSeconds(result.secondsTotal)}
                   </p>
                   <p className="text-text-secondary text-sm">
-                    That's <strong className="text-text-primary">{yearsToPayoff.toFixed(1)} years</strong> of payments — {formatUSD(result.totalPaid)} over {Math.round(result.months)} months.
+                    That&apos;s <strong className="text-text-primary">{yearsToPayoff.toFixed(1)} years</strong> of payments — {formatUSD(result.totalPaid)} over {Math.round(result.months)} months.
                   </p>
                 </div>
 
@@ -210,7 +210,7 @@ export default function SecondsSoldToDebt() {
                 href="/debt-is-paid-with-years"
                 className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-subtle text-text-primary px-6 py-3 rounded-lg font-semibold hover:border-accent-dim transition-colors"
               >
-                Read "Debt Is Paid With Years"
+                Read &quot;Debt Is Paid With Years&quot;
               </Link>
             </div>
           </div>

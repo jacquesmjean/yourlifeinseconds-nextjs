@@ -104,7 +104,7 @@ export default function HoursOfLife() {
             Hours of Your <span className="text-gradient">Life Budget</span>
           </h1>
           <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-            Every expense is hours of working life sold. See what you're actually trading — in hours, not dollars.
+            Every expense is hours of working life sold. See what you&apos;re actually trading — in hours, not dollars.
           </p>
         </div>
 
@@ -178,7 +178,7 @@ export default function HoursOfLife() {
           <div className="lg:col-span-3 space-y-6">
             {/* Hero */}
             <div className="bg-gradient-to-br from-brand-card to-brand-card-hover border border-accent-dim rounded-xl p-8 text-center">
-              <p className="text-xs font-mono font-semibold tracking-widest uppercase text-text-muted mb-3">LIFETIME SECONDS YOU'RE TRADING</p>
+              <p className="text-xs font-mono font-semibold tracking-widest uppercase text-text-muted mb-3">LIFETIME SECONDS YOU&apos;RE TRADING</p>
               <p className="text-6xl lg:text-7xl font-bold font-mono text-gradient mb-2">
                 {formatCompactSeconds(result.totalLifetimeSeconds)}
               </p>
@@ -244,7 +244,7 @@ export default function HoursOfLife() {
                 href="/priced-in-hours-not-dollars"
                 className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-subtle text-text-primary px-6 py-3 rounded-lg font-semibold hover:border-accent-dim transition-colors"
               >
-                Read "Priced in Hours, Not Dollars"
+                Read &quot;Priced in Hours, Not Dollars&quot;
               </Link>
             </div>
           </div>
