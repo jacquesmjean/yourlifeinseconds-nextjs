@@ -61,6 +61,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/child-affordability',
     '/tools/rent-vs-buy',
     '/tools/mortgage-payoff',
+    '/tools/seconds-sold-to-debt',
+    '/tools/seconds-to-freedom',
+    '/tools/hours-of-life',
+    '/tools/degree-in-seconds',
   ].map((slug) => ({
     url: `${baseUrl}${slug}`,
     changeFrequency: 'weekly' as const,
@@ -83,6 +87,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/running-out-of-time',
     '/not-a-time-problem',
     '/one-hour-shift',
+    '/debt-is-paid-with-years',
+    '/freedom-is-a-math-problem',
+    '/priced-in-hours-not-dollars',
+    '/degree-doesnt-owe-you-a-life',
   ].map((slug) => ({
     url: `${baseUrl}${slug}`,
     changeFrequency: 'monthly' as const,
