@@ -24,11 +24,11 @@ const tools: Tool[] = [
   // Live
   { name: "$1M Tax Reality", desc: "See what you actually keep from $1 million after taxes — the hours of life you trade for the net.", icon: "💲", link: "/#tax-reality", cta: "Run the Reality Check", featured: true, status: 'live' },
 
-  // Reframed time-money tools (in build)
-  { name: "Hours of Your Life Budget", desc: "Every expense converted into hours of working life sold.", icon: "⏳", link: "/tools/hours-of-life", cta: "Coming Soon", status: 'soon' },
-  { name: "Seconds Sold to Debt", desc: "The seconds of your life you owe to every dollar of debt — at your hourly rate, with interest.", icon: "⛓️", link: "/tools/seconds-sold-to-debt", cta: "Coming Soon", status: 'soon' },
-  { name: "Seconds to Freedom", desc: "How many seconds until you stop selling them — your financial-independence countdown.", icon: "🗝️", link: "/tools/seconds-to-freedom", cta: "Coming Soon", status: 'soon' },
-  { name: "Degree in Seconds", desc: "Years of life, seconds of interest, lifetime return — the honest cost of a degree.", icon: "🎓", link: "/tools/degree-in-seconds", cta: "Coming Soon", status: 'soon' },
+  // Reframed time-money tools
+  { name: "Hours of Your Life Budget", desc: "Every expense converted into hours of working life sold.", icon: "⏳", link: "/tools/hours-of-life", cta: "Run the Budget", status: 'live' },
+  { name: "Seconds Sold to Debt", desc: "The seconds of your life you owe to every dollar of debt — at your hourly rate, with interest.", icon: "⛓️", link: "/tools/seconds-sold-to-debt", cta: "Calculate the Cost", status: 'live' },
+  { name: "Seconds to Freedom", desc: "How many seconds until you stop selling them — your financial-independence countdown.", icon: "🗝️", link: "/tools/seconds-to-freedom", cta: "Start the Countdown", status: 'live' },
+  { name: "Degree in Seconds", desc: "Years of life, seconds of interest, lifetime return — the honest cost of a degree.", icon: "🎓", link: "/tools/degree-in-seconds", cta: "Run the Math", status: 'live' },
 
   // New time-clarity tools
   { name: "Regret Minimizer", desc: "Your top 3 values vs. how your seconds actually get spent. The gap is the regret.", icon: "💭", link: "/tools/regret-minimizer", cta: "Coming Soon", status: 'soon' },
