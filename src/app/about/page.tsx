@@ -318,20 +318,20 @@ export default function AboutPage() {
           <div className="max-w-[1100px] mx-auto">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-accent font-mono mb-2">2.4M+</div>
-                <p className="text-text-secondary">Lives Calculated</p>
+                <div className="text-4xl sm:text-5xl font-bold text-accent font-mono mb-2">Free</div>
+                <p className="text-text-secondary">No Paywall</p>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-accent font-mono mb-2">180+</div>
-                <p className="text-text-secondary">Countries Reached</p>
+                <div className="text-4xl sm:text-5xl font-bold text-accent font-mono mb-2">Private</div>
+                <p className="text-text-secondary">No Account Needed</p>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-accent font-mono mb-2">12+</div>
-                <p className="text-text-secondary">Tools Built</p>
+                <div className="text-4xl sm:text-5xl font-bold text-accent font-mono mb-2">WHO</div>
+                <p className="text-text-secondary">Life-Expectancy Source</p>
               </div>
               <div className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-accent font-mono mb-2">4.9/5</div>
-                <p className="text-text-secondary">Average Rating</p>
+                <div className="text-4xl sm:text-5xl font-bold text-accent font-mono mb-2">14</div>
+                <p className="text-text-secondary">Insight Essays</p>
               </div>
             </div>
           </div>

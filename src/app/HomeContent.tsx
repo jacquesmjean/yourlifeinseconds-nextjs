@@ -41,7 +41,6 @@ export default function HomeContent() {
         description: 'Calculate your life in seconds and discover the true scarcity of time',
         applicationCategory: 'ProductivityApplication',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-        aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', ratingCount: '125000' },
       },
       {
         '@type': 'HowTo',
@@ -93,7 +92,7 @@ export default function HomeContent() {
               </h1>
 
               <p className="text-lg sm:text-xl text-text-secondary max-w-lg">
-                Join <strong className="text-text-primary">2.4M+</strong> users who have discovered the true scarcity of their time and transformed their productivity.
+                Discover the <strong className="text-text-primary">true scarcity</strong> of your time. Free, private, and grounded in real WHO life-expectancy data.
               </p>
 
               <div className="bg-brand-card border border-subtle rounded-lg p-6 inline-block">
@@ -228,10 +227,10 @@ export default function HomeContent() {
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { val: '2.4M+', label: 'Lives Calculated' },
-              { val: '180+', label: 'Countries Reached' },
-              { val: '4.9/5', label: 'User Rating' },
-              { val: '#1', label: 'Life Seconds Calculator' },
+              { val: 'Free', label: 'No Paywall' },
+              { val: 'Private', label: 'No Account Needed' },
+              { val: 'WHO', label: 'Life-Expectancy Source' },
+              { val: '14', label: 'Insight Essays' },
             ].map((s) => (
               <div key={s.label} className="text-center">
                 <p className="text-4xl lg:text-5xl font-bold font-mono text-gradient mb-2">{s.val}</p>

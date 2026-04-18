@@ -2,24 +2,40 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Life Design Tools — Calculators & Planners',
-  description: 'Free calculators and planners to align your life, balance outcomes, and design your future. Tax reality, retirement, debt, investment, and more.',
+  title: 'Life Design Tools — Calculators That Measure Time',
+  description: 'Tools that convert money, debt, education, and regret into the only unit that actually matters — seconds of your life.',
 };
 
-const tools = [
-  { name: "$1M Tax Reality", desc: "See what you actually keep from $1 million after taxes.", icon: "💲", link: "/#tax-reality", cta: "Run the Reality Check", featured: true },
-  { name: "Currency Converter", desc: "Global rates for instant conversion.", icon: "🌐", link: "/tools", cta: "Run Simulation" },
-  { name: "Budget Planner", desc: "Track expenses and plan ahead.", icon: "📋", link: "/tools", cta: "Run Simulation" },
-  { name: "Debt Accelerator", desc: "Create your freedom plan to eliminate debt faster.", icon: "📈", link: "/tools", cta: "Run Simulation" },
-  { name: "Child Affordability", desc: "Understand the future costs of raising a child.", icon: "👶", link: "/tools", cta: "Run Simulation" },
-  { name: "Investment Basics", desc: "Start growing your wealth with confidence.", icon: "📊", link: "/tools", cta: "Run Simulation" },
-  { name: "Retirement Plan", desc: "Build future security with smart planning.", icon: "🏠", link: "/tools", cta: "Run Simulation" },
-  { name: "Family Planning", desc: "Navigate life changes with clarity.", icon: "👨‍👩‍👧", link: "/tools", cta: "Run Simulation" },
-  { name: "Relocation", desc: "Compare cities and countries for your next move.", icon: "📍", link: "/tools", cta: "Run Simulation" },
-  { name: "University ROI", desc: "Calculate the real value of education.", icon: "🎓", link: "/tools", cta: "Run Simulation" },
-  { name: "Income Potential", desc: "Model your career growth trajectory.", icon: "💼", link: "/tools", cta: "Run Simulation" },
-  { name: "Emergency Plan", desc: "Prepare for crisis survival scenarios.", icon: "🏗️", link: "/tools", cta: "Run Simulation" },
-  { name: "Resilience Score", desc: "Measure your life stability and adaptability.", icon: "🛡️", link: "/tools", cta: "Run Simulation" },
+type ToolStatus = 'live' | 'soon';
+
+interface Tool {
+  name: string;
+  desc: string;
+  icon: string;
+  link: string;
+  cta: string;
+  featured?: boolean;
+  status: ToolStatus;
+}
+
+// Curated lineup. Every tool converts a life decision into seconds.
+// Off-brand generic utilities (currency converter, relocation, etc.) were retired.
+const tools: Tool[] = [
+  // Live
+  { name: "$1M Tax Reality", desc: "See what you actually keep from $1 million after taxes — the hours of life you trade for the net.", icon: "💲", link: "/#tax-reality", cta: "Run the Reality Check", featured: true, status: 'live' },
+
+  // Reframed time-money tools (in build)
+  { name: "Hours of Your Life Budget", desc: "Every expense converted into hours of working life sold.", icon: "⏳", link: "/tools/hours-of-life", cta: "Coming Soon", status: 'soon' },
+  { name: "Seconds Sold to Debt", desc: "The seconds of your life you owe to every dollar of debt — at your hourly rate, with interest.", icon: "⛓️", link: "/tools/seconds-sold-to-debt", cta: "Coming Soon", status: 'soon' },
+  { name: "Seconds to Freedom", desc: "How many seconds until you stop selling them — your financial-independence countdown.", icon: "🗝️", link: "/tools/seconds-to-freedom", cta: "Coming Soon", status: 'soon' },
+  { name: "Degree in Seconds", desc: "Years of life, seconds of interest, lifetime return — the honest cost of a degree.", icon: "🎓", link: "/tools/degree-in-seconds", cta: "Coming Soon", status: 'soon' },
+
+  // New time-clarity tools
+  { name: "Regret Minimizer", desc: "Your top 3 values vs. how your seconds actually get spent. The gap is the regret.", icon: "💭", link: "/tools/regret-minimizer", cta: "Coming Soon", status: 'soon' },
+  { name: "Cost of Wait", desc: "The waiting tax. A live counter of every second you delay starting what matters.", icon: "⏰", link: "/tools/cost-of-wait", cta: "Coming Soon", status: 'soon' },
+  { name: "Seconds That Outlive You", desc: "Legacy ROI — the 20-year ripple of every hour you spend mentoring, building, creating.", icon: "🌱", link: "/tools/seconds-that-outlive-you", cta: "Coming Soon", status: 'soon' },
+  { name: "Time Capsule", desc: "Send a message to your future self at an exact second in time — 10, 20, 30 years from now.", icon: "📮", link: "/tools/time-capsule", cta: "Coming Soon", status: 'soon' },
+  { name: "Purchasing Power of a Second", desc: "What one second of your work bought in 1970, what it buys now, and what it will buy in 2070.", icon: "📉", link: "/tools/purchasing-power", cta: "Coming Soon", status: 'soon' },
 ];
 
 export default function ToolsPage() {
@@ -39,33 +55,47 @@ export default function ToolsPage() {
       </section>
 
       {/* Tools Grid */}
-      <section className="py-16 bg-brand-bg">
+      <section id="tools-grid" className="py-16 bg-brand-bg">
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {tools.map((tool) => (
-              <div
-                key={tool.name}
-                className={`bg-brand-card border rounded-xl p-6 hover:border-accent-dim hover:-translate-y-1 transition-all relative group ${
-                  tool.featured ? 'border-accent-dim sm:col-span-2' : 'border-subtle'
-                }`}
-              >
-                {tool.featured && (
-                  <span className="absolute top-4 right-4 inline-flex items-center gap-1 bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full border border-accent/20">
-                    ⭐ Featured
-                  </span>
-                )}
-                <div className="text-3xl mb-4">{tool.icon}</div>
-                <h3 className="text-lg font-bold mb-2 text-text-primary">{tool.name}</h3>
-                <p className="text-text-secondary text-sm mb-4 leading-relaxed">{tool.desc}</p>
-                <Link
-                  href={tool.link}
-                  className="inline-flex items-center gap-1 text-accent text-sm font-semibold hover:gap-2 transition-all"
+            {tools.map((tool) => {
+              const isSoon = tool.status === 'soon';
+              return (
+                <div
+                  key={tool.name}
+                  className={`bg-brand-card border rounded-xl p-6 transition-all relative group ${
+                    tool.featured ? 'border-accent-dim sm:col-span-2' : 'border-subtle'
+                  } ${isSoon ? 'opacity-75' : 'hover:border-accent-dim hover:-translate-y-1'}`}
                 >
-                  {tool.cta}
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </Link>
-              </div>
-            ))}
+                  {tool.featured && (
+                    <span className="absolute top-4 right-4 inline-flex items-center gap-1 bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full border border-accent/20">
+                      ⭐ Featured
+                    </span>
+                  )}
+                  {isSoon && (
+                    <span className="absolute top-4 right-4 inline-flex items-center gap-1 bg-text-muted/10 text-text-muted text-[10px] font-semibold px-2 py-0.5 rounded-full border border-text-muted/20 uppercase tracking-wider">
+                      Coming Soon
+                    </span>
+                  )}
+                  <div className="text-3xl mb-4">{tool.icon}</div>
+                  <h3 className="text-lg font-bold mb-2 text-text-primary">{tool.name}</h3>
+                  <p className="text-text-secondary text-sm mb-4 leading-relaxed">{tool.desc}</p>
+                  {isSoon ? (
+                    <span className="inline-flex items-center gap-1 text-text-muted text-sm font-semibold">
+                      {tool.cta}
+                    </span>
+                  ) : (
+                    <Link
+                      href={tool.link}
+                      className="inline-flex items-center gap-1 text-accent text-sm font-semibold hover:gap-2 transition-all"
+                    >
+                      {tool.cta}
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -81,7 +111,7 @@ export default function ToolsPage() {
             {[
               { icon: '⏱', title: 'I want clarity on my life', desc: 'Understand your time, weeks remaining, and life allocation.', cta: 'Calculate My Life', link: '/#life-clock', primary: true },
               { icon: '💰', title: 'I want to understand my money', desc: 'See the real cost of your decisions and true tax impact.', cta: 'Run Simulation', link: '/#tax-reality', primary: false },
-              { icon: '📈', title: 'I want to optimize my future', desc: 'Model your investments, debt payoff, and income potential.', cta: 'Run Simulation', link: '/tools', primary: false },
+              { icon: '📈', title: 'I want to optimize my future', desc: 'Model your debt-free date, financial-independence seconds, and legacy ROI.', cta: 'Explore the Tools', link: '#tools-grid', primary: false },
             ].map((entry) => (
               <div key={entry.title} className="bg-brand-card border border-subtle rounded-xl p-8 flex flex-col">
                 <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-2xl mb-6">{entry.icon}</div>
