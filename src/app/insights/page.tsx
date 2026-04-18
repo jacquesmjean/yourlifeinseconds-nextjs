@@ -279,6 +279,34 @@ const strategyArticles = [
     slug: "one-hour-shift",
     icon: SparkIcon,
   },
+  {
+    category: "MONEY & TIME",
+    title: "Debt Is Paid With Years, Not Dollars",
+    desc: "Interest is not a fee. It is a voluntary life-tax on your future seconds. See what your debt really costs.",
+    slug: "debt-is-paid-with-years",
+    icon: DollarIcon,
+  },
+  {
+    category: "MONEY & TIME",
+    title: "Freedom Is a Math Problem, Not a Feeling",
+    desc: "Financial independence is not a vibe. It is a specific number, a specific date, and a specific countdown.",
+    slug: "freedom-is-a-math-problem",
+    icon: HourglassIcon,
+  },
+  {
+    category: "MONEY & TIME",
+    title: "Your Expenses Aren't Priced in Dollars",
+    desc: "Every price tag has a second price tag nobody shows you — the hours of your life it costs.",
+    slug: "priced-in-hours-not-dollars",
+    icon: CheckShieldIcon,
+  },
+  {
+    category: "EDUCATION & TIME",
+    title: "The Degree Doesn't Owe You a Life",
+    desc: "College ROI statistics are a lie of averages. Understand survivorship bias, opportunity cost, and the real breakeven age.",
+    slug: "degree-doesnt-owe-you-a-life",
+    icon: GearIcon,
+  },
 ];
 
 /* ─── Quick Reference Data ─── */
