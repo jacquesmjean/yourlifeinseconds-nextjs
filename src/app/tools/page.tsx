@@ -19,23 +19,14 @@ type Tool = {
 const tools: Tool[] = [
   { name: "Global Life Clock", desc: "Calculate your life in seconds and see exactly how much time remains.", icon: "⏰", link: "/#life-clock", cta: "Start Life Clock", featured: true },
   { name: "$1M Tax Reality", desc: "See what you actually keep from $1 million after taxes.", icon: "💲", link: "/#tax-reality", cta: "Run the Reality Check", featured: true },
-  { name: "Currency Converter", desc: "Global rates for instant conversion.", icon: "🌐", link: "/tools/currency-converter", cta: "Convert Currency" },
-  { name: "Budget Planner", desc: "Track expenses and plan ahead.", icon: "📋", link: "/tools/budget-planner", cta: "Plan My Budget" },
-  { name: "Debt Accelerator", desc: "Create your freedom plan to eliminate debt faster.", icon: "📈", link: "/tools/debt-accelerator", cta: "Crush My Debt" },
-  { name: "Child Affordability", desc: "Understand the future costs of raising a child.", icon: "👶", link: "/tools/child-affordability", cta: "Calculate Cost" },
-  { name: "Rent vs Buy", desc: "Know when buying beats renting — year by year.", icon: "🏠", link: "/tools/rent-vs-buy", cta: "Run the Math" },
-  { name: "Mortgage Payoff", desc: "See how much faster (and cheaper) you can crush your mortgage.", icon: "🔑", link: "/tools/mortgage-payoff", cta: "Accelerate Payoff" },
   { name: "Hours of Your Life Budget", desc: "Every expense converted into hours of working life sold.", icon: "⏳", link: "/tools/hours-of-life", cta: "Run the Budget" },
   { name: "Seconds Sold to Debt", desc: "The seconds of your life you owe to every dollar of debt — at your hourly rate, with interest.", icon: "⛓️", link: "/tools/seconds-sold-to-debt", cta: "Calculate the Cost" },
   { name: "Seconds to Freedom", desc: "How many seconds until you stop selling them — your financial-independence countdown.", icon: "🗝️", link: "/tools/seconds-to-freedom", cta: "Start the Countdown" },
   { name: "Degree in Seconds", desc: "Years of life, seconds of interest, lifetime return — the honest cost of a degree.", icon: "🎓", link: "/tools/degree-in-seconds", cta: "Run the Math" },
-  { name: "Investment Basics", desc: "Start growing your wealth with confidence.", icon: "📊", comingSoon: true },
-  { name: "Retirement Plan", desc: "Build future security with smart planning.", icon: "🏠", comingSoon: true },
-  { name: "Family Planning", desc: "Navigate life changes with clarity.", icon: "👨‍👩‍👧", comingSoon: true },
-  { name: "Relocation", desc: "Compare cities and countries for your next move.", icon: "📍", comingSoon: true },
-  { name: "Income Potential", desc: "Model your career growth trajectory.", icon: "💼", comingSoon: true },
-  { name: "Emergency Plan", desc: "Prepare for crisis survival scenarios.", icon: "🏗️", comingSoon: true },
-  { name: "Resilience Score", desc: "Measure your life stability and adaptability.", icon: "🛡️", comingSoon: true },
+  { name: "The Waiting Tax", desc: "Every day you wait, you pay. Watch the live ticker of what procrastination has cost you so far.", icon: "🧾", link: "/tools/cost-of-wait", cta: "See My Tax" },
+  { name: "Regret Minimizer", desc: "If your time ended in an hour, who have you not called? Name your values and see where your week actually goes.", icon: "⚖️", link: "/tools/regret-minimizer", cta: "Read My Drift" },
+  { name: "Legacy ROI", desc: "Most people track financial ROI. Almost nobody tracks impact-per-hour. Score the ripple of your time.", icon: "🌳", link: "/tools/legacy-roi", cta: "Score My Legacy" },
+  { name: "Standard of Living Time-Traveler", desc: "A dollar is not a dollar. Slide from 1950 to 2050 and see what your income actually buys across decades.", icon: "🕰️", link: "/tools/standard-of-living-time-traveler", cta: "Travel Through Time" },
 ];
 
 export default function ToolsPage() {

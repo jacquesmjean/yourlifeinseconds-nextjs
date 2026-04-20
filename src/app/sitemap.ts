@@ -55,12 +55,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   const toolPages: MetadataRoute.Sitemap = [
-    '/tools/currency-converter',
-    '/tools/budget-planner',
-    '/tools/debt-accelerator',
-    '/tools/child-affordability',
-    '/tools/rent-vs-buy',
-    '/tools/mortgage-payoff',
     '/tools/seconds-sold-to-debt',
     '/tools/seconds-to-freedom',
     '/tools/hours-of-life',
