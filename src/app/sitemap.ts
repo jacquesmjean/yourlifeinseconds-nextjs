@@ -65,6 +65,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/seconds-to-freedom',
     '/tools/hours-of-life',
     '/tools/degree-in-seconds',
+    '/tools/cost-of-wait',
+    '/tools/regret-minimizer',
+    '/tools/legacy-roi',
+    '/tools/standard-of-living-time-traveler',
   ].map((slug) => ({
     url: `${baseUrl}${slug}`,
     changeFrequency: 'weekly' as const,
@@ -91,6 +95,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/freedom-is-a-math-problem',
     '/priced-in-hours-not-dollars',
     '/degree-doesnt-owe-you-a-life',
+    '/the-waiting-tax',
+    '/the-regret-you-cant-afford',
+    '/some-seconds-compound',
+    '/a-dollar-in-1985',
   ].map((slug) => ({
     url: `${baseUrl}${slug}`,
     changeFrequency: 'monthly' as const,
