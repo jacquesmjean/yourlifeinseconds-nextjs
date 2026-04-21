@@ -92,6 +92,7 @@ import {
   type LifeClockPayload,
 } from '@/lib/lifeClockPayload';
 import { encodeShortCode } from '@/lib/shortCode';
+import { track, Events } from '@/lib/analytics';
 
 const HOURLY_WORTH = 28.85;
 
@@ -139,6 +140,15 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
   const [downloading, setDownloading] = useState(false);
   const [canNativeShare, setCanNativeShare] = useState(false);
   const animationFrameRef = useRef<number>();
+  // Live values for the count-up animation. Kept in a ref so the rAF loop
+  // can check progress synchronously, independent of React's batched state
+  // updates (which previously caused the animation to stall after 1–2 frames
+  // and leave users looking at 4–10% of the real numbers).
+  const animProgressRef = useRef({
+    usedSeconds: 0,
+    remainingSeconds: 0,
+    scarcityScore: 0,
+  });
 
   useEffect(() => {
     // Feature-detect Web Share API with file support.
@@ -248,11 +258,22 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
       lifeExpectancy,
     });
 
-    // Initialize animated values
+    // Initialize animated values (start at 0, rAF loop will count up to target)
+    animProgressRef.current = {
+      usedSeconds: 0,
+      remainingSeconds: 0,
+      scarcityScore: 0,
+    };
     setAnimatedValues({
       usedSeconds: { target: usedSeconds, current: 0 },
       remainingSeconds: { target: Math.max(0, remainingSeconds), current: 0 },
       scarcityScore: { target: Math.min(100, scarcityScore), current: 0 },
+    });
+
+    track(Events.CALC_COMPLETED, {
+      country: country?.name || selectedCountry,
+      gender,
+      age_bucket: Math.floor(usedSeconds / (365.25 * 86400 * 10)) * 10, // 0, 10, 20, 30...
     });
 
     setStep(3);
@@ -271,36 +292,62 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
     return () => clearInterval(interval);
   }, [step, results]);
 
-  // Count-up animation for metrics
+  // Count-up animation for metrics.
+  //
+  // Runs a ~900ms ease-out reveal from 0 → target on each of the three metric
+  // cards. Uses performance.now() for a time-based animation (resilient to
+  // frame-rate drops) and writes progress to a ref so the rAF loop's "are we
+  // done?" check is fully synchronous, independent of React's state batching.
+  //
+  // Previous implementation read `hasMore` from a closure that depended on a
+  // React setState updater running synchronously. Under React 18 concurrent
+  // rendering inside requestAnimationFrame that updater is deferred, so the
+  // loop exited after 1–2 frames and the numbers froze at 4–10% of target.
   useEffect(() => {
     if (step !== 3 || !results) return;
 
+    const targets = {
+      usedSeconds: results.usedSeconds,
+      remainingSeconds: Math.max(0, results.remainingSeconds),
+      scarcityScore: Math.min(100, results.scarcityScore),
+    };
+
+    const DURATION_MS = 900;
+    const startTime = typeof performance !== 'undefined' ? performance.now() : Date.now();
     let stillAnimating = true;
 
-    const animate = () => {
-      let hasMore = false;
+    // easeOutCubic for a natural deceleration at the end.
+    const ease = (t: number) => 1 - Math.pow(1 - t, 3);
 
-      setAnimatedValues((prev) => {
-        const newValues = { ...prev };
+    const animate = (now: number) => {
+      if (!stillAnimating) return;
 
-        (['usedSeconds', 'remainingSeconds', 'scarcityScore'] as const).forEach((key) => {
-          const current = newValues[key];
-          const increment = Math.ceil((current.target - current.current) / 20);
-          const newCurrent = current.current + increment;
+      const elapsed = now - startTime;
+      const t = Math.min(1, elapsed / DURATION_MS);
+      const eased = ease(t);
 
-          if (newCurrent < current.target) {
-            newValues[key] = { ...current, current: newCurrent };
-            hasMore = true;
-          } else {
-            newValues[key] = { ...current, current: current.target };
-          }
-        });
+      animProgressRef.current = {
+        usedSeconds: targets.usedSeconds * eased,
+        remainingSeconds: targets.remainingSeconds * eased,
+        scarcityScore: targets.scarcityScore * eased,
+      };
 
-        return newValues;
+      setAnimatedValues({
+        usedSeconds: { target: targets.usedSeconds, current: animProgressRef.current.usedSeconds },
+        remainingSeconds: { target: targets.remainingSeconds, current: animProgressRef.current.remainingSeconds },
+        scarcityScore: { target: targets.scarcityScore, current: animProgressRef.current.scarcityScore },
       });
 
-      if (hasMore && stillAnimating) {
+      if (t < 1 && stillAnimating) {
         animationFrameRef.current = requestAnimationFrame(animate);
+      } else {
+        // Snap to exact final values so we never show rounding drift.
+        animProgressRef.current = { ...targets };
+        setAnimatedValues({
+          usedSeconds: { target: targets.usedSeconds, current: targets.usedSeconds },
+          remainingSeconds: { target: targets.remainingSeconds, current: targets.remainingSeconds },
+          scarcityScore: { target: targets.scarcityScore, current: targets.scarcityScore },
+        });
       }
     };
 
@@ -389,6 +436,7 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
   const handleNativeShare = async () => {
     if (!results || typeof navigator === 'undefined' || !navigator.share) return;
     haptic();
+    track(Events.SHARE_CLICKED, { platform: 'native', variant: shareVariant });
     const text = generateShareText();
     const url = buildShareUrl();
     try {
@@ -419,6 +467,10 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
   // Share handlers
   const handleShare = (platform: string) => {
     haptic();
+    track(
+      platform === 'copy' ? Events.SHARE_COPIED : Events.SHARE_CLICKED,
+      { platform, variant: shareVariant }
+    );
     const text = generateShareText();
     const url = buildShareUrl();
 
