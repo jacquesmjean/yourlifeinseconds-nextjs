@@ -68,12 +68,12 @@ export default function Footer() {
               <li><Link href="/#life-clock" className="text-sm text-text-secondary hover:text-accent transition-colors">Dashboard</Link></li>
               <li><Link href="/#life-clock" className="text-sm text-text-secondary hover:text-accent transition-colors">Calculator</Link></li>
               <li>
-                <a href="https://buy.stripe.com/7sY6oHf7Nftzf4xeOr0oM01" target="_blank" rel="noopener noreferrer" className="text-sm text-text-secondary hover:text-accent transition-colors">
+                <a href="https://buy.stripe.com/7sY6oHf7Nftzf4xeOr0oM01" target="_blank" rel="noopener noreferrer" data-ga-label="stripe-single-footer" className="text-sm text-text-secondary hover:text-accent transition-colors">
                   Get This Report &mdash; $9
                 </a>
               </li>
               <li>
-                <a href="https://buy.stripe.com/bJeeVd8Jp5SZe0teOr0oM02" target="_blank" rel="noopener noreferrer" className="text-sm text-accent font-semibold hover:underline transition-colors flex items-center gap-1">
+                <a href="https://buy.stripe.com/bJeeVd8Jp5SZe0teOr0oM02" target="_blank" rel="noopener noreferrer" data-ga-label="stripe-bundle-footer" className="text-sm text-accent font-semibold hover:underline transition-colors flex items-center gap-1">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z" />
                   </svg>
@@ -104,6 +104,7 @@ export default function Footer() {
               href="https://buy.stripe.com/bJeeVd8Jp5SZe0teOr0oM02"
               target="_blank"
               rel="noopener noreferrer"
+              data-ga-label="stripe-bundle-offer"
               className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-semibold text-sm rounded-lg hover:shadow-glow transition-all"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

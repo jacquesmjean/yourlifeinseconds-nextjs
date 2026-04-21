@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Analytics from "@/components/Analytics";
+import CookieConsent from "@/components/CookieConsent";
 // import ScrollReveal from "@/components/ScrollReveal"; // disabled: causing invisible sections on production
 import "./globals.css";
 
@@ -68,9 +70,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="font-sans overflow-x-hidden">
+        <Analytics />
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
