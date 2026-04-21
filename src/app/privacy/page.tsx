@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 };
 
-const UPDATED = "April 9, 2026";
+const UPDATED = "April 20, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -34,8 +34,12 @@ export default function PrivacyPage() {
               use it to send the newsletter you signed up for.
             </li>
             <li>
-              <strong>Basic analytics</strong>: anonymous page view data (no cookies that
-              identify you personally).
+              <strong>Analytics data</strong>: we use Google Analytics 4 to understand how
+              visitors use the site. This includes page views, clicks on buttons and links,
+              calculator usage, approximate location (country and region), device type, and
+              browser. This data is aggregated and used to improve the site. Google
+              Analytics sets cookies only if you accept them in the consent banner. If you
+              decline, we collect basic cookieless pings with no identifiers.
             </li>
             <li>
               <strong>Payment information</strong>: if you purchase a report, payment is
@@ -53,6 +57,36 @@ export default function PrivacyPage() {
           <h2 className="text-2xl font-bold text-text-primary pt-4">Third-party services</h2>
           <ul className="list-disc pl-6 space-y-2">
             <li>
+              <strong>Google Analytics 4</strong> — site analytics. See{" "}
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent"
+              >
+                Google&apos;s privacy policy
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://support.google.com/analytics/answer/6004245"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent"
+              >
+                how Google uses Analytics data
+              </a>
+              . You can opt out at any time using our cookie banner, or install the{" "}
+              <a
+                href="https://tools.google.com/dlpage/gaoptout"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent"
+              >
+                Google Analytics Opt-out Browser Add-on
+              </a>
+              .
+            </li>
+            <li>
               <strong>Resend</strong> — email delivery for newsletter subscribers.
             </li>
             <li>
@@ -63,6 +97,19 @@ export default function PrivacyPage() {
             </li>
           </ul>
           <p>Each of these providers has its own privacy policy.</p>
+
+          <h2 className="text-2xl font-bold text-text-primary pt-4">Cookies and tracking</h2>
+          <p>
+            We use a minimal set of cookies. Functional cookies (for remembering your
+            consent choice) are always set. Analytics cookies are only set if you click
+            Accept in the consent banner that appears on your first visit. You can change
+            your preference at any time by clearing your browser&apos;s site data for
+            yourlifeinseconds.com — the banner will appear again on your next visit.
+          </p>
+          <p>
+            We honor the browser&apos;s Do Not Track signal where available. We do not use
+            cookies for advertising, retargeting, or to build cross-site profiles.
+          </p>
 
           <h2 className="text-2xl font-bold text-text-primary pt-4">Your rights</h2>
           <p>

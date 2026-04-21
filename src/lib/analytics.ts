@@ -9,6 +9,7 @@
 type GtagArgs =
   | ["config", string, Record<string, unknown>?]
   | ["event", string, Record<string, unknown>?]
+  | ["consent", "default" | "update", Record<string, unknown>]
   | ["js", Date]
   | ["set", Record<string, unknown>];
 

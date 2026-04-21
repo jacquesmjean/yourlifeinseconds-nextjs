@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
+import CookieConsent from "@/components/CookieConsent";
 // import ScrollReveal from "@/components/ScrollReveal"; // disabled: causing invisible sections on production
 import "./globals.css";
 
@@ -73,6 +74,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
