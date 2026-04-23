@@ -21,7 +21,7 @@ export default function HomeContent() {
         .animate-clock-rotate-reverse { animation: clock-rotate-reverse 90s linear infinite; }
       `}</style>
 
-      {/* Hero Section */}
+      {/* ═══════════ Hero ═══════════ */}
       <section
         id="hero"
         className="bg-gradient-to-b from-brand-bg via-brand-bg to-brand-bg-secondary flex items-center relative overflow-hidden pt-32 sm:pt-36 pb-20"
@@ -35,17 +35,18 @@ export default function HomeContent() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <p className="text-xs sm:text-sm font-mono font-semibold tracking-widest uppercase text-accent">
-                A FREE LIFE CLOCK
+                SEE YOUR LIFE IN SECONDS
               </p>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
-                Every Second <span className="text-gradient">Counts</span>. Do You Know Your
-                <span className="text-gradient">s</span>?
+                You have a limited number of <span className="text-gradient">seconds</span>.
+                <br />
+                Let&apos;s count them together.
               </h1>
 
               <p className="text-lg sm:text-xl text-text-secondary max-w-lg">
-                Find out how many seconds you&apos;ve lived, how many remain, and what the
-                numbers reveal about the time you have left.
+                A perspective platform for time and life. Count your seconds. See where they
+                go. Meet others counting theirs differently.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -53,13 +54,13 @@ export default function HomeContent() {
                   href="#life-clock"
                   className="press-active px-8 py-4 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-semibold rounded-lg hover:shadow-glow transition-shadow text-center"
                 >
-                  Calculate My Life
+                  Enter My Birthdate →
                 </Link>
                 <Link
-                  href="#how-it-works"
+                  href="/tools"
                   className="press-active px-8 py-4 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors text-center"
                 >
-                  See How It Works
+                  See the Tools
                 </Link>
               </div>
 
@@ -93,7 +94,7 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* ═══════════ How It Works ═══════════ */}
       <section id="how-it-works" className="py-20 bg-brand-bg-secondary">
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="text-center mb-16">
@@ -101,28 +102,29 @@ export default function HomeContent() {
               HOW IT WORKS
             </p>
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-              Three Steps to <span className="text-gradient">Clarity</span>
+              Three questions. <span className="text-gradient">One mirror.</span>
             </h2>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              Unlock a perspective on life that numbers alone can reveal.
+              The Life Clock isn&apos;t a productivity widget. It&apos;s a mirror for the life
+              you&apos;re already living.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 num: '01',
-                title: 'Enter Your Birthday',
-                desc: "Select your date of birth. That's the only data we need.",
+                title: 'Enter your birthdate',
+                desc: "That's the only data we need.",
               },
               {
                 num: '02',
-                title: 'Choose Your Region',
-                desc: 'We apply country-level life expectancy for a more accurate projection.',
+                title: 'Choose your region',
+                desc: 'Life expectancy shifts the math.',
               },
               {
                 num: '03',
-                title: 'See Your Results',
-                desc: 'View your life in seconds, plus a full breakdown of time remaining.',
+                title: 'See what you have',
+                desc: 'Then decide what to do with it.',
               },
             ].map((step) => (
               <div
@@ -140,91 +142,124 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* Tools Section */}
+      {/* ═══════════ Tools Preview ═══════════ */}
       <section id="tools" className="py-20 bg-brand-bg">
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="text-center mb-16">
             <p className="text-xs font-mono font-semibold tracking-widest uppercase text-accent mb-4">
-              FREE TOOLS
+              THE TOOLS
             </p>
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-              Two Calculators for <span className="text-gradient">Real Clarity</span>
+              Ten mirrors. <span className="text-gradient">Each shows you something different.</span>
             </h2>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              Two tools. Zero fluff. Just the numbers that actually matter.
+              Every tool here reframes something most people never see clearly. Start anywhere.
+              Come back often.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: 'Life Clock', desc: 'Your life in seconds — and what remains.', href: '#life-clock' },
+              { title: 'Hours of Life', desc: 'What an hour of your time is actually worth.', href: '/tools/hours-of-life' },
+              { title: 'Legacy ROI', desc: 'What lasts after the seconds are spent.', href: '/tools/legacy-roi' },
+              { title: 'Regret Minimizer', desc: 'Decisions viewed from the end of your life.', href: '/tools/regret-minimizer' },
+            ].map((t) => (
+              <Link
+                key={t.title}
+                href={t.href}
+                className="group bg-brand-card border border-subtle rounded-xl p-6 hover:border-accent-dim hover:-translate-y-1 transition-all flex flex-col"
+              >
+                <h3 className="text-lg font-bold text-text-primary mb-2 group-hover:text-accent transition-colors">
+                  {t.title}
+                </h3>
+                <p className="text-text-secondary text-sm flex-1 mb-4">{t.desc}</p>
+                <span className="text-accent text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                  Open →
+                </span>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link
+              href="/tools"
+              className="press-active px-6 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors inline-block"
+            >
+              See all ten tools →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Life Clock + Tax Reality calculators */}
+      <LifeClockWizard />
+      <TaxReality />
+
+      {/* ═══════════ The Circle ═══════════ */}
+      <section id="circle" className="py-20 bg-brand-bg-secondary">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <p className="text-xs font-mono font-semibold tracking-widest uppercase text-accent mb-4">
+              THE CIRCLE
+            </p>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+              Find others who are <span className="text-gradient">counting differently.</span>
+            </h2>
+            <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+              Once you see your seconds, the next question is who you&apos;re spending them with.
+              The Circle is where people ask those questions together.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gradient-to-br from-accent/5 to-brand-card border border-accent-dim rounded-xl p-8 relative">
-              <h3 className="text-2xl font-bold mb-3">Global Life Clock</h3>
+              <span className="absolute top-6 right-6 text-[10px] font-mono font-bold tracking-widest uppercase text-accent bg-accent/10 px-3 py-1 rounded-full">
+                COMING SOON
+              </span>
+              <h3 className="text-2xl font-bold mb-3">Perspective Partners</h3>
               <p className="text-text-secondary mb-6 leading-relaxed">
-                Calculate your life in seconds. See how many you&apos;ve used, how many remain,
-                and the full time breakdown.
+                Matched with someone whose life looks nothing like yours. Write to them. Listen
+                to them. Count differently.
               </p>
-              <div className="space-y-3 mb-8">
-                {[
-                  'Real-time second counter',
-                  'Country-level life expectancy',
-                  'Full time breakdown',
-                  'Shareable results',
-                ].map((f) => (
-                  <div key={f} className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                    <span className="text-text-secondary text-sm">{f}</span>
-                  </div>
-                ))}
-              </div>
               <Link
-                href="#life-clock"
+                href="/membership"
                 className="press-active block w-full px-6 py-3 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-semibold rounded-lg hover:shadow-glow transition-shadow text-center"
               >
-                Start Life Clock
+                Join the waitlist →
               </Link>
             </div>
-            <div className="bg-brand-card border border-subtle rounded-xl p-8 hover:border-accent-dim transition-colors">
-              <h3 className="text-2xl font-bold mb-3">$1M Tax Reality</h3>
+            <div className="bg-brand-card border border-subtle rounded-xl p-8 hover:border-accent-dim transition-colors relative">
+              <span className="absolute top-6 right-6 text-[10px] font-mono font-bold tracking-widest uppercase text-accent bg-accent/10 px-3 py-1 rounded-full">
+                MEMBERS
+              </span>
+              <h3 className="text-2xl font-bold mb-3">Fireside Sessions</h3>
               <p className="text-text-secondary mb-6 leading-relaxed">
-                Earning $1 million sounds great — until you see what&apos;s left. Discover the
-                hidden costs that silently erode your wealth.
+                Eight people. One real question. Ninety minutes, live.{' '}
+                <em>&ldquo;What is enough?&rdquo; &ldquo;The second career.&rdquo; &ldquo;The meeting you haven&apos;t had yet.&rdquo;</em>
               </p>
-              <div className="space-y-3 mb-8">
-                {[
-                  'State + federal tax modeling',
-                  'Hidden cost breakdown',
-                  'Real purchasing power',
-                  'Time-to-earn calculations',
-                ].map((f) => (
-                  <div key={f} className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 bg-accent rounded-full" />
-                    <span className="text-text-secondary text-sm">{f}</span>
-                  </div>
-                ))}
-              </div>
               <Link
-                href="#tax-reality"
+                href="/circle/firesides"
                 className="press-active block w-full px-6 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors text-center"
               >
-                Calculate Tax Reality
+                See the next session →
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Calculators */}
-      <LifeClockWizard />
-      <TaxReality />
-
-      {/* Insights Preview */}
+      {/* ═══════════ The Perspective Library Preview ═══════════ */}
       <section className="py-20 bg-brand-bg">
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="text-center mb-16">
             <p className="text-xs font-mono font-semibold tracking-widest uppercase text-accent mb-4">
-              INSIGHTS HUB
+              THE PERSPECTIVE LIBRARY
             </p>
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-              Popular <span className="text-gradient">Time Questions</span>
+              Questions worth <span className="text-gradient">sitting with.</span>
             </h2>
+            <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+              Essays, reflections, and deep dives on time, meaning, and how we actually spend
+              the seconds we have.
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -246,7 +281,7 @@ export default function HomeContent() {
               href="/insights"
               className="press-active px-6 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors inline-block"
             >
-              Explore All Insights
+              Open the Library →
             </Link>
           </div>
         </div>
@@ -259,15 +294,15 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* Featured Deep Dives */}
+      {/* From the Library — Featured Articles */}
       <section className="py-20 bg-brand-bg">
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="text-center mb-14">
             <p className="text-xs font-mono font-semibold tracking-widest uppercase text-accent mb-4">
-              DEEP DIVES
+              FROM THE LIBRARY
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Articles Worth Your <span className="text-gradient">Time</span>
+              Articles worth <span className="text-gradient">your time.</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -317,28 +352,54 @@ export default function HomeContent() {
               href="/insights"
               className="press-active px-6 py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-colors inline-block"
             >
-              Explore All Deep Dives →
+              Open the full Library →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-20">
+      {/* ═══════════ The Letter ═══════════ */}
+      <section className="py-20 bg-brand-bg-secondary">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="text-center">
+            <p className="text-xs font-mono font-semibold tracking-widest uppercase text-accent mb-4">
+              THE LETTER
+            </p>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+              Say something to the version of you who&apos;ll read this in{' '}
+              <span className="text-gradient">20 years.</span>
+            </h2>
+            <p className="text-text-secondary text-lg max-w-2xl mx-auto mb-8">
+              The Legacy Letter is a voice memo to your future self. Three questions. Your own
+              words. Kept forever.
+            </p>
+            <Link
+              href="/tools/legacy-letter"
+              className="press-active inline-block px-8 py-4 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-semibold rounded-lg hover:shadow-glow transition-shadow"
+            >
+              Start Your Letter →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ Final CTA ═══════════ */}
+      <section className="py-20 bg-brand-bg">
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="text-center p-16 bg-gradient-to-br from-accent/8 to-accent-blue/5 border border-accent-dim rounded-2xl">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-              Your Time Is <span className="text-gradient">Running Out.</span>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4 leading-tight">
+              You won&apos;t remember most of the days <span className="text-gradient">you have left.</span>
+              <br />
+              Make the ones you do count differently.
             </h2>
             <p className="text-text-secondary text-lg mb-8 max-w-md mx-auto">
-              Every second you spend reading this is a second you&apos;ll never get back. Make
-              the rest count.
+              Every second you spend here is a second aimed at the rest.
             </p>
             <Link
               href="#life-clock"
               className="press-active px-10 py-4 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-bold text-lg rounded-lg hover:shadow-glow transition-shadow inline-block"
             >
-              Start My Life Clock Now
+              Enter My Birthdate →
             </Link>
           </div>
         </div>
@@ -346,3 +407,4 @@ export default function HomeContent() {
     </>
   );
 }
+
