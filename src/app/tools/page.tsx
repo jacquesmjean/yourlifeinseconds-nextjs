@@ -125,81 +125,27 @@ export default function ToolsPage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
+      {/* Membership CTA */}
       <section className="py-20 bg-brand-bg">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Turn Insight Into <span className="text-gradient">Action</span></h2>
-            <p className="text-text-secondary text-lg">Get comprehensive reports that go deeper than the tools.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {/* Single Report — $9 */}
-            <div className="bg-brand-card border border-subtle rounded-xl p-8 text-center flex flex-col">
-              <h3 className="text-xl font-bold mb-2">Single Life Insight</h3>
-              <div className="text-5xl font-bold my-4">$9</div>
-              <p className="text-text-secondary mb-6 flex-1">See where your time actually goes and what your future looks like if nothing changes.</p>
-              <ul className="text-left space-y-2 mb-8 text-sm text-text-secondary">
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-accent rounded-full" />Personalized Life Report</li>
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-accent rounded-full" />Time Scarcity Score</li>
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-accent rounded-full" />Life allocation breakdown</li>
-              </ul>
-              <a
-                href="https://buy.stripe.com/7sY6oHf7Nftzf4xeOr0oM01"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-all"
-              >
-                Get Report — $9
-              </a>
-            </div>
-
-            {/* Bundle — $19 */}
-            <div className="bg-brand-card border border-accent-dim rounded-xl overflow-hidden text-center flex flex-col relative">
-              <div className="bg-gradient-to-r from-accent to-accent-blue py-2 text-brand-bg text-sm font-bold tracking-wider">
-                MOST POPULAR
-              </div>
-              <div className="p-8 flex flex-col flex-1">
-                <h3 className="text-xl font-bold mb-2">Life Insights Bundle</h3>
-                <div className="text-5xl font-bold text-accent my-4">$19</div>
-                <p className="text-text-secondary mb-6 flex-1">Life Report + Strategy Report + Design System at a bundled discount.</p>
-                <ul className="text-left space-y-2 mb-8 text-sm text-text-secondary">
-                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-accent rounded-full" />Everything in Single</li>
-                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-accent rounded-full" />Strategy Report</li>
-                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-accent rounded-full" />Life Design System</li>
-                  <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-accent rounded-full" />Save 30% vs. individual</li>
-                </ul>
-                <a
-                  href="https://buy.stripe.com/bJeeVd8Jp5SZe0teOr0oM02"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full py-3 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-semibold rounded-lg hover:shadow-glow transition-all"
-                >
-                  Get Bundle — $19
-                </a>
-              </div>
-            </div>
-
-            {/* Full System — $49 */}
-            <div className="bg-brand-card border border-subtle rounded-xl p-8 text-center flex flex-col">
-              <h3 className="text-xl font-bold mb-2">Full Life System</h3>
-              <div className="text-5xl font-bold my-4">$49</div>
-              <p className="text-text-secondary mb-6 flex-1">The complete platform for total life clarity, strategy, and long-term transformation.</p>
-              <ul className="text-left space-y-2 mb-8 text-sm text-text-secondary">
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-accent rounded-full" />Everything in Bundle</li>
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-accent rounded-full" />Priority support</li>
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-accent rounded-full" />Lifetime updates</li>
-                <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-accent rounded-full" />Advanced financial tools</li>
-              </ul>
-              <a
-                href="https://buy.stripe.com/fZu5kD7Fl4OV1dH7lZ0oM04"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full py-3 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-all"
-              >
-                Get Full System — $49
-              </a>
-            </div>
-          </div>
+        <div className="max-w-[900px] mx-auto px-6 text-center">
+          <p className="text-xs font-mono font-semibold tracking-widest uppercase text-accent mb-4">
+            THE CIRCLE
+          </p>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 leading-tight">
+            Counting is the start. <span className="text-gradient">The Circle is the rest.</span>
+          </h2>
+          <p className="text-text-secondary text-lg mb-10 max-w-2xl mx-auto">
+            Membership unlocks unlimited tools, perspective partners matched with someone living differently than you, monthly Fireside sessions, and the full Perspective Library. From $5/month.
+          </p>
+          <Link
+            href="/membership"
+            className="press-active inline-block px-10 py-4 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-bold text-lg rounded-lg hover:shadow-glow transition-shadow"
+          >
+            Become a Member &rarr;
+          </Link>
+          <p className="text-text-muted text-xs mt-6">
+            First 100 members get Curious at $3/month for life.
+          </p>
         </div>
       </section>
 
@@ -219,3 +165,4 @@ export default function ToolsPage() {
     </>
   );
 }
+

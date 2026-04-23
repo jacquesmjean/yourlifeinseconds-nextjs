@@ -16,10 +16,10 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-text-secondary text-sm leading-relaxed mb-2">
-              Transform how you see time. Calculate your life&apos;s value, gain clarity, and make every moment count.
+              A perspective platform for time and life. Count your seconds. See where they go. Meet others counting theirs differently.
             </p>
             <p className="text-text-secondary text-sm font-semibold mb-5">
-              Built to help people value their time.
+              Built in Texas and Haiti.
             </p>
 
             {/* Social Icons */}
@@ -65,21 +65,11 @@ export default function Footer() {
             <h4 className="text-sm font-bold text-text-primary mb-5 uppercase tracking-wider">Quick Links</h4>
             <ul className="space-y-3 list-none">
               <li><Link href="/" className="text-sm text-text-secondary hover:text-accent transition-colors">Home</Link></li>
-              <li><Link href="/#life-clock" className="text-sm text-text-secondary hover:text-accent transition-colors">Dashboard</Link></li>
-              <li><Link href="/#life-clock" className="text-sm text-text-secondary hover:text-accent transition-colors">Calculator</Link></li>
-              <li>
-                <a href="https://buy.stripe.com/7sY6oHf7Nftzf4xeOr0oM01" target="_blank" rel="noopener noreferrer" data-ga-label="stripe-single-footer" className="text-sm text-text-secondary hover:text-accent transition-colors">
-                  Get This Report &mdash; $9
-                </a>
-              </li>
-              <li>
-                <a href="https://buy.stripe.com/bJeeVd8Jp5SZe0teOr0oM02" target="_blank" rel="noopener noreferrer" data-ga-label="stripe-bundle-footer" className="text-sm text-accent font-semibold hover:underline transition-colors flex items-center gap-1">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z" />
-                  </svg>
-                  Get 3 Reports &mdash; $19
-                </a>
-              </li>
+              <li><Link href="/tools" className="text-sm text-text-secondary hover:text-accent transition-colors">Tools</Link></li>
+              <li><Link href="/membership" className="text-sm text-text-secondary hover:text-accent transition-colors">Circle</Link></li>
+              <li><Link href="/insights" className="text-sm text-text-secondary hover:text-accent transition-colors">Library</Link></li>
+              <li><Link href="/tools/legacy-letter" className="text-sm text-text-secondary hover:text-accent transition-colors">Letter</Link></li>
+              <li><Link href="/about" className="text-sm text-text-secondary hover:text-accent transition-colors">About</Link></li>
             </ul>
           </div>
 
@@ -87,31 +77,26 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-bold text-text-primary mb-5 uppercase tracking-wider">Company</h4>
             <ul className="space-y-3 list-none">
-              <li><Link href="/mission" className="text-sm text-text-secondary hover:text-accent transition-colors">About Platform</Link></li>
+              <li><Link href="/mission" className="text-sm text-text-secondary hover:text-accent transition-colors">Mission</Link></li>
               <li><Link href="/about" className="text-sm text-text-secondary hover:text-accent transition-colors">Founder</Link></li>
+              <li><Link href="/contact" className="text-sm text-text-secondary hover:text-accent transition-colors">Contact</Link></li>
               <li><Link href="/privacy" className="text-sm text-text-secondary hover:text-accent transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="text-sm text-text-secondary hover:text-accent transition-colors">Terms of Service</Link></li>
             </ul>
           </div>
 
-          {/* Special Offer */}
+          {/* Membership */}
           <div>
-            <h4 className="text-sm font-bold text-text-primary mb-5 uppercase tracking-wider">Special Offer</h4>
+            <h4 className="text-sm font-bold text-text-primary mb-5 uppercase tracking-wider">Membership</h4>
             <p className="text-text-secondary text-sm mb-4 leading-relaxed">
-              Save more with our bundled reports. Get any 3 digital life insights to build your future.
+              First 100 members get Curious at <strong className="text-text-primary">$3/mo for life</strong>. Limited seats.
             </p>
-            <a
-              href="https://buy.stripe.com/bJeeVd8Jp5SZe0teOr0oM02"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-ga-label="stripe-bundle-offer"
+            <Link
+              href="/membership"
               className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-accent to-accent-blue text-brand-bg font-semibold text-sm rounded-lg hover:shadow-glow transition-all"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" /><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-              </svg>
-              Get 3 Reports &mdash; $19
-            </a>
+              Become a Member &rarr;
+            </Link>
 
             <div className="mt-6 pt-4 border-t border-subtle">
               <p className="text-text-muted text-xs mb-1">General Inquiries</p>
@@ -125,11 +110,11 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="text-center pt-8 border-t border-subtle">
           <p className="text-[13px] text-text-muted">
-            &copy; 2026 Your Life In Seconds. Made with{" "}
-            <span className="text-red-400">&hearts;</span> for a better life.
+            &copy; 2026 Your Life In Seconds. A perspective platform for time and life.
           </p>
         </div>
       </div>
     </footer>
   );
 }
+
