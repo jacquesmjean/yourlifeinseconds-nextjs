@@ -647,22 +647,26 @@ export default function LifeClockWizard({ initialPayload }: LifeClockWizardProps
                   Gender
                 </label>
                 <div className="flex gap-4 flex-wrap">
-                  {['male', 'female', 'average'].map((g) => (
+                  {[
+                    { value: 'male', label: 'Male' },
+                    { value: 'female', label: 'Female' },
+                    { value: 'average', label: 'Prefer not to say' },
+                  ].map((g) => (
                     <label
-                      key={g}
+                      key={g.value}
                       className="flex items-center gap-3 cursor-pointer"
                     >
                       <input
                         type="radio"
                         name="gender"
-                        value={g}
-                        checked={gender === g}
+                        value={g.value}
+                        checked={gender === g.value}
                         onChange={(e) =>
                           setGender(e.target.value as 'male' | 'female' | 'average')
                         }
                         className="h-4 w-4 cursor-pointer accent-accent"
                       />
-                      <span className="text-text-primary capitalize">{g}</span>
+                      <span className="text-text-primary">{g.label}</span>
                     </label>
                   ))}
                 </div>
