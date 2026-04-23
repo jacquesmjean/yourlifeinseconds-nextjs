@@ -53,23 +53,6 @@ export default function MembershipPage() {
       ],
       cta: "Join Connected — $15/mo →",
     },
-    {
-      id: "legacy",
-      name: "Legacy",
-      tagline: "For those thinking about what they leave behind.",
-      price: "$49",
-      period: "/mo",
-      annual: "or $480/year",
-      featured: false,
-      features: [
-        "Everything in Connected",
-        "Legacy Documents suite — letters, values memo, ethical will",
-        "Quarterly Legacy Circle — 8 people, guided, live",
-        "Annual personal planning session",
-        "Named member of the founding Legacy Circle",
-      ],
-      cta: "Join Legacy — $49/mo →",
-    },
   ];
 
   const faqs = [
@@ -88,10 +71,6 @@ export default function MembershipPage() {
     {
       q: "Who will I be matched with as a perspective partner?",
       a: "Someone whose life looks different from yours — different country, different stage, different path. That's the whole point. Matching is slow and careful, not algorithmic-fast.",
-    },
-    {
-      q: "What's in the Legacy Documents suite?",
-      a: "AI-assisted templates for ethical wills, letters to children, values memoranda, and a personal time budget you revisit annually.",
     },
     {
       q: "Why isn't YLIS a one-time purchase?",
@@ -121,7 +100,7 @@ export default function MembershipPage() {
             MEMBERSHIP
           </p>
           <h1 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
-            Three ways to count <span className="text-gradient">differently</span>.
+            Two ways to count <span className="text-gradient">differently</span>.
           </h1>
           <p className="text-text-secondary text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
             YourLifeInSeconds is free to visit. Free to count. Membership is for those who
@@ -134,13 +113,13 @@ export default function MembershipPage() {
       {/* Tiers */}
       <section id="tiers" className="py-16 px-6 bg-brand-bg-secondary">
         <div className="max-w-[1200px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
             {tiers.map((tier) => (
               <div
                 key={tier.id}
                 className={`rounded-2xl p-8 flex flex-col relative ${
                   tier.featured
-                    ? "bg-gradient-to-br from-accent/10 to-brand-card border-2 border-accent md:-mt-4 md:mb-4 shadow-glow"
+                    ? "bg-gradient-to-br from-accent/10 to-brand-card border-2 border-accent shadow-glow"
                     : "bg-brand-card border border-subtle"
                 }`}
               >
