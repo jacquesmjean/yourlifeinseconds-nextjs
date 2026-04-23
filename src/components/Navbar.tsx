@@ -13,6 +13,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/tools", label: "Tools" },
+    { href: "/membership", label: "Circle" },
+    { href: "/insights", label: "Library" },
+    { href: "/tools/legacy-letter", label: "Letter" },
+    { href: "/about", label: "About" },
+  ];
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 border-b border-subtle transition-all duration-300 ${
@@ -22,7 +31,9 @@ export default function Navbar() {
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-[72px]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 text-text-primary no-underline">
-          <span className="flex items-center justify-center w-9 h-9 bg-gradient-accent rounded-lg text-brand-bg text-sm font-bold">LS</span>
+          <span className="flex items-center justify-center w-9 h-9 bg-gradient-accent rounded-lg text-brand-bg text-sm font-bold">
+            LS
+          </span>
           <span className="text-lg font-bold tracking-tight">
             Your Life <span className="text-accent">In Seconds</span>
           </span>
@@ -30,24 +41,16 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <ul className="hidden lg:flex items-center gap-6 list-none">
-          <li>
-            <Link href="/" className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Home</Link>
-          </li>
-          <li>
-            <Link href="/tools" className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Tools</Link>
-          </li>
-          <li>
-            <Link href="/insights" className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Insights</Link>
-          </li>
-          <li>
-            <Link href="/about" className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Founder</Link>
-          </li>
-          <li>
-            <Link href="/mission" className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">About</Link>
-          </li>
-          <li>
-            <Link href="/contact" className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Contact</Link>
-          </li>
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         {/* CTA Buttons */}
@@ -56,15 +59,13 @@ export default function Navbar() {
             href="/#life-clock"
             className="flex items-center gap-2 px-4 py-2 border border-accent text-accent rounded-lg text-sm font-semibold hover:bg-accent/10 transition-colors"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Calculate My Time
+            Start Counting
           </Link>
           <Link
-            href="/tools"
+            href="/membership"
             className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent to-accent-blue text-brand-bg rounded-lg text-sm font-semibold hover:shadow-glow transition-all"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            Start Your Dashboard
+            Become a Member
           </Link>
         </div>
 
@@ -74,26 +75,55 @@ export default function Navbar() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle navigation"
         >
-          <span className={`w-6 h-0.5 bg-text-primary rounded transition-all ${menuOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
-          <span className={`w-6 h-0.5 bg-text-primary rounded transition-all ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`w-6 h-0.5 bg-text-primary rounded transition-all ${menuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
+          <span
+            className={`w-6 h-0.5 bg-text-primary rounded transition-all ${
+              menuOpen ? "rotate-45 translate-y-[7px]" : ""
+            }`}
+          />
+          <span
+            className={`w-6 h-0.5 bg-text-primary rounded transition-all ${
+              menuOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`w-6 h-0.5 bg-text-primary rounded transition-all ${
+              menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+            }`}
+          />
         </button>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="lg:hidden bg-brand-bg/98 border-b border-subtle px-6 py-6 flex flex-col gap-4">
-          <Link href="/" className="text-text-secondary hover:text-text-primary" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link href="/tools" className="text-text-secondary hover:text-text-primary" onClick={() => setMenuOpen(false)}>Tools</Link>
-          <Link href="/insights" className="text-text-secondary hover:text-text-primary" onClick={() => setMenuOpen(false)}>Insights</Link>
-          <Link href="/about" className="text-text-secondary hover:text-text-primary" onClick={() => setMenuOpen(false)}>Founder</Link>
-          <Link href="/mission" className="text-text-secondary hover:text-text-primary" onClick={() => setMenuOpen(false)}>About</Link>
-          <Link href="/contact" className="text-text-secondary hover:text-text-primary" onClick={() => setMenuOpen(false)}>Contact</Link>
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-text-secondary hover:text-text-primary"
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
           <hr className="border-subtle" />
-          <Link href="/#life-clock" className="border border-accent text-accent px-4 py-2 rounded-lg font-semibold text-center" onClick={() => setMenuOpen(false)}>Calculate My Time</Link>
-          <Link href="/tools" className="bg-gradient-to-r from-accent to-accent-blue text-brand-bg px-4 py-2 rounded-lg font-semibold text-center" onClick={() => setMenuOpen(false)}>Start Your Dashboard</Link>
+          <Link
+            href="/#life-clock"
+            className="border border-accent text-accent px-4 py-2 rounded-lg font-semibold text-center"
+            onClick={() => setMenuOpen(false)}
+          >
+            Start Counting
+          </Link>
+          <Link
+            href="/membership"
+            className="bg-gradient-to-r from-accent to-accent-blue text-brand-bg px-4 py-2 rounded-lg font-semibold text-center"
+            onClick={() => setMenuOpen(false)}
+          >
+            Become a Member
+          </Link>
         </div>
       )}
     </nav>
   );
 }
+
