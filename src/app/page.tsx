@@ -2,14 +2,16 @@ import type { Metadata } from 'next';
 import HomeContent from './HomeContent';
 
 export const metadata: Metadata = {
-  title: 'YourLifeInSeconds.com — Life Productivity Calculator',
+  title: 'How Many Seconds Have You Lived? | YourLifeInSeconds',
   description:
-    'Calculate your life in seconds and see how many remain. A free life clock that turns your time into numbers you can\'t ignore.',
+    'Calculate exactly how many seconds you have lived and how many remain. A free life clock — enter your birthdate and see your real time in under 10 seconds.',
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'YourLifeInSeconds.com — Every Second Counts',
-    description: 'How many seconds have you lived? How many remain? Find out in 10 seconds.',
+    title: 'How Many Seconds Have You Lived? | YourLifeInSeconds',
+    description:
+      'A typical life is 2.5 billion seconds. Find out how many you have left in 10 seconds.',
     url: 'https://yourlifeinseconds.com',
-    siteName: 'YourLifeInSeconds.com',
+    siteName: 'YourLifeInSeconds',
     type: 'website',
   },
 };
@@ -55,10 +57,34 @@ const homeSchema = {
       mainEntity: [
         {
           '@type': 'Question',
+          name: 'How many seconds have I lived?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Roughly 31,536,000 seconds for every year of your age. A 35-year-old has lived about 1.1 billion seconds. For your exact count, enter your birthdate into the Life Clock.',
+          },
+        },
+        {
+          '@type': 'Question',
           name: 'How many seconds are in a lifetime?',
           acceptedAnswer: {
             '@type': 'Answer',
             text: 'An average 80-year lifespan contains approximately 2,522,880,000 seconds.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How many hours are in an average lifetime?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'About 700,800 hours in an 80-year life. Around 230,000 are spent sleeping and 90,000 working, leaving roughly 380,000 waking, non-working hours.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How many days are in a lifetime?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'About 29,220 days in an 80-year life. Each day is 86,400 seconds, the same for everyone.',
           },
         },
         {
@@ -74,7 +100,7 @@ const homeSchema = {
           name: 'Is YourLifeInSeconds free?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. The Life Clock and Tax Reality calculators are free. Your data stays in your browser.',
+            text: 'Yes. The Life Clock and every tool on the site are free. Your data stays in your browser.',
           },
         },
       ],
@@ -114,3 +140,4 @@ export default function Home() {
     </>
   );
 }
+
