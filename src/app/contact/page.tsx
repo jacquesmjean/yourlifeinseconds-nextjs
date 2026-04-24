@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/contact' },
   title: "Contact — YourLifeInSeconds",
   description:
     "Get in touch with the YourLifeInSeconds team. We'd love to hear from you about partnerships, feedback, or questions. Response time guaranteed.",

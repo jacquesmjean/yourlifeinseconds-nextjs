@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/about' },
   title: "About | YourLifeInSeconds",
   description:
     "I grew up in Haiti and walked into a library for the first time at 18. YourLifeInSeconds is what came out of the counting I've done since.",

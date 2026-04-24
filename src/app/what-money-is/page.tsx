@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/what-money-is' },
   title: 'What Money Actually Is | YourLifeInSeconds.com',
   description: "Money isn\'t currency. Money is time. Discover how reframing money as stored life energy transforms every financial decision you make.",
   openGraph: {

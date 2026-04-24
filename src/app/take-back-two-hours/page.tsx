@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/take-back-two-hours' },
   title: 'What If You Took Back 2 Hours a Day | YourLifeInSeconds.com',
   description: "2 hours per day = 730 hours per year = 30 extra days. In 5 years, that\'s 150 days. Discover the compound effect of reclaimed time.",
   openGraph: {

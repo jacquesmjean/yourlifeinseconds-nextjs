@@ -3,6 +3,7 @@ import Link from "next/link";
 import ArticleLayout from "@/components/ArticleLayout";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/running-out-of-time' },
   title: "Why Most People Run Out of Time Without Realizing | YourLifeInSeconds",
   description:
     "How routines compress perceived time. The autopilot trap that makes decades disappear. Understand the neuroscience of time perception and how to break the pattern.",

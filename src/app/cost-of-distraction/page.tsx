@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/cost-of-distraction' },
   title: 'The Cost of Distraction | YourLifeInSeconds.com',
   description: 'Every interruption costs 23 minutes to refocus. You check your phone 96 times daily. The annual tax: ~28 days lost per year.',
   openGraph: {

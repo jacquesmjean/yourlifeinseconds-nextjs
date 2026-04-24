@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/degree-doesnt-owe-you-a-life' },
   title: "The Degree Doesn't Owe You a Life | YourLifeInSeconds.com",
   description: "College ROI statistics are a lie of averages. Understand the survivorship bias, the opportunity cost, and the real life-price of a degree.",
   openGraph: {

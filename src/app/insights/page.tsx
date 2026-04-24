@@ -4,6 +4,7 @@ import Link from "next/link";
 import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/insights' },
   title: "The Science of Time — Insights & Deep Dives | YourLifeInSeconds",
   description:
     "Explore deep dives on time, money, work, and life design. Understand where your life actually goes and how to take it back.",

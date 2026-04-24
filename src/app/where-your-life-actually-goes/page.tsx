@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/where-your-life-actually-goes' },
   title: 'Where Your Life Actually Goes — YourLifeInSeconds',
   description:
     'You think you know where your time goes. A brutal breakdown reveals the truth: sleep, work, commute, meals, chores, and the shocking gap where you expected to be living.',

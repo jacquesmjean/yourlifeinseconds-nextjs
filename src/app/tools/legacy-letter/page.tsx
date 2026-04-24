@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/tools/legacy-letter' },
   title: "The Legacy Letter | YourLifeInSeconds",
   description:
     "Say something to the version of you who'll read this in 20 years. Three questions. Your own words. Kept forever.",

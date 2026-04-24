@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/circle/firesides' },
   title: "Fireside Sessions | YourLifeInSeconds",
   description:
     "Eight people. One real question. Ninety minutes, live. A conversation you couldn't have had anywhere else.",

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import LegacyROI from '@/components/tools/LegacyROI';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/tools/legacy-roi' },
   title: 'Legacy ROI — What Outlives Your Hours',
   description: 'Most people track financial ROI. Almost nobody tracks impact-per-hour. Measure the compound ripple of your time — what outlives the hour you spent.',
   openGraph: {

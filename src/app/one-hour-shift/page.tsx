@@ -3,6 +3,7 @@ import Link from "next/link";
 import ArticleLayout from "@/components/ArticleLayout";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/one-hour-shift' },
   title: "The 1-Hour Shift That Changes Your Life | YourLifeInSeconds",
   description:
     "One hour per day equals 365 hours per year. In five years, that's 75 full days. Discover the mathematics of reallocation and what consistent daily practice produces.",

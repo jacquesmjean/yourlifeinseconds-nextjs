@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import HoursOfLife from '@/components/tools/HoursOfLife';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/tools/hours-of-life' },
   title: 'Hours of Your Life Budget — Every Expense in Hours Worked',
   description: 'Every expense is hours of working life sold. Convert your monthly spending into hours, years, and seconds of life traded — at your net hourly rate.',
   openGraph: {

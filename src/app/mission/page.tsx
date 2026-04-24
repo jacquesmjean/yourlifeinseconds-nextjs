@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/mission' },
   title: 'Our Mission — Life Clarity for Millions',
   description:
     'We bring life clarity to millions by transforming complex emotional, financial, and life decisions into simple, human-centered tools that restore dignity, stability, and hope.',

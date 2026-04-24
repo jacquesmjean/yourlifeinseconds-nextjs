@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/school-trained-you' },
   title: 'School Trained You to Trade Time — YourLifeInSeconds',
   description:
     "The factory model of education wasn't designed to develop free thinkers. It was designed to prepare you to trade time for approval. Here's how to unlearn it.",

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/priced-in-hours-not-dollars' },
   title: 'Your Expenses Aren\'t Priced in Dollars | YourLifeInSeconds.com',
   description: "Every price tag has a second price tag nobody shows you — the hours of your life it costs. Read your budget in the only currency that matters.",
   openGraph: {

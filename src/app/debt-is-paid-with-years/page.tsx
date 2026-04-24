@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/debt-is-paid-with-years' },
   title: 'Debt Is Paid With Years, Not Dollars | YourLifeInSeconds.com',
   description: "The 22% APR is not a fee. It is a life-tax you agreed to. Calculate the real price of your debt in the only currency that matters — your seconds.",
   openGraph: {

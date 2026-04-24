@@ -28,7 +28,6 @@ export const metadata: Metadata = {
   description:
     "Discover exactly how many seconds you've lived and how many remain. A free life clock that turns your time into numbers you can't ignore.",
   authors: [{ name: "Jacques M. Jean" }],
-  alternates: { canonical: "/" },
   openGraph: {
     title: "YourLifeInSeconds — See Your Life in Real Time",
     description:

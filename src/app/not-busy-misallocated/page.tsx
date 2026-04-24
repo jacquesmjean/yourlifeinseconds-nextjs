@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/not-busy-misallocated' },
   title: "You're Not Busy. You're Misallocated. — YourLifeInSeconds",
   description:
     "Stop blaming the clock. You have 168 hours a week. The problem isn't time — it's allocation. Learn how to shift from reactive to proactive living.",

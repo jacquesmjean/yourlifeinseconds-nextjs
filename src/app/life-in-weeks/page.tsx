@@ -3,6 +3,7 @@ import Link from "next/link";
 import ArticleLayout from "@/components/ArticleLayout";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/life-in-weeks' },
   title: "Your Life in Weeks (Not Years) | YourLifeInSeconds",
   description:
     "The average human life is about 4,000 weeks. See the grid visualization that changes everything. When you see time this way, procrastination becomes impossible.",

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/freedom-is-a-math-problem' },
   title: 'Freedom Is a Math Problem, Not a Feeling | YourLifeInSeconds.com',
   description: "Financial independence is not a vibe. It is a specific number, a specific date, and a specific countdown. Learn what 25x actually buys you.",
   openGraph: {

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/marriage-and-self' },
   title: 'Marriage and the Disappearance of Self — YourLifeInSeconds',
   description:
     'Marriage changes time allocation dramatically. Explore how shared calendars, merged identities, and mutual obligations can dissolve the self — and how to protect it.',

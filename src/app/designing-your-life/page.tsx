@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/designing-your-life' },
   title: 'Designing a Life That Is Yours | YourLifeInSeconds.com',
   description: "Most people don\'t design their lives; they inherit them. Learn how to audit, design, and build a life that\'s actually yours.",
   openGraph: {

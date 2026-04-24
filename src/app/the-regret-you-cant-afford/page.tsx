@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/the-regret-you-cant-afford' },
   title: "The Regret You Can't Afford | YourLifeInSeconds.com",
   description: "Nobody on a deathbed wishes they had spent more time on email. But your calendar keeps voting the other way. Here is how to read the drift — and fix it before it compounds.",
   openGraph: {

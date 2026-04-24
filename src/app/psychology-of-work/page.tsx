@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/psychology-of-work' },
   title: 'The Psychology of Work — YourLifeInSeconds',
   description:
     "Work consumes 90,000 hours of your life. But we don't just work — we become our work. Explore why quitting feels like dying and how to reclaim your identity.",

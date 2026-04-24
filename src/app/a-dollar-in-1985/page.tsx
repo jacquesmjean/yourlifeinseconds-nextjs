@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/a-dollar-in-1985' },
   title: 'A Dollar in 1985 | YourLifeInSeconds.com',
   description: "Your hour of work does not buy what your parents' hour bought. Here is why that matters, and what to do about it before the next forty years pass the same way.",
   openGraph: {

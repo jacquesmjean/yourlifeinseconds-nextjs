@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/the-waiting-tax' },
   title: 'The Waiting Tax | YourLifeInSeconds.com',
   description: "Procrastination is not free. It is a line item on your life — paid in dollars, health, and seconds you will never get back. Here is how to read the receipt.",
   openGraph: {

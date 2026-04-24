@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/time-you-control' },
   title: 'How Much Time Do You Actually Control | YourLifeInSeconds.com',
   description: "Start with 24 hours. Subtract sleep, work, commute, meals. You\'re left with 2.5 hours of truly discretionary time. That\'s 10.4% of your day.",
   openGraph: {

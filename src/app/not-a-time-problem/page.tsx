@@ -3,6 +3,7 @@ import Link from "next/link";
 import ArticleLayout from "@/components/ArticleLayout";
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/not-a-time-problem' },
   title: "You Don't Have a Time Problem | YourLifeInSeconds",
   description:
     "You have a priority problem. Time management advice fails because it addresses symptoms, not causes. Close the Awareness Gap and align your life with your values.",

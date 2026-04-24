@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/some-seconds-compound' },
   title: 'Some Seconds Compound. Most Don\'t. | YourLifeInSeconds.com',
   description: "An hour spent mentoring carries for 20 years. An hour of doom-scroll carries for zero. Here is how to tell compounding time from consumable time — and why it matters.",
   openGraph: {

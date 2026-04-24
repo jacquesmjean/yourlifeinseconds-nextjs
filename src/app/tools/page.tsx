@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/tools' },
   title: 'Life Design Tools — Calculators & Planners',
   description: 'Free calculators and planners to align your life, balance outcomes, and design your future. Tax reality, retirement, debt, investment, and more.',
 };

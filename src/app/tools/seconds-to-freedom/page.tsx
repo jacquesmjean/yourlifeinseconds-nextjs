@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import SecondsToFreedom from '@/components/tools/SecondsToFreedom';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/tools/seconds-to-freedom' },
   title: 'Seconds to Freedom — Your Financial Independence Countdown',
   description: 'Financial independence is the day you stop selling your seconds. Calculate the exact number of seconds until you reach FI, using the Trinity 4% rule.',
   openGraph: {
