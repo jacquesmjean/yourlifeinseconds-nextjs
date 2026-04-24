@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Our Mission — Life Clarity for Millions',
@@ -106,20 +107,18 @@ export default function MissionPage() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href="/#life-clock"
               className="inline-flex items-center justify-center px-8 py-4 bg-text-gradient text-white font-semibold rounded-lg hover:shadow-glow transition-all duration-300"
             >
               Analyze My Time
-            </a>
-            <a
-              href="https://buy.stripe.com/7sY6oHf7Nftzf4xeOr0oM01"
-              target="_blank"
-              rel="noopener noreferrer"
+            </Link>
+            <Link
+              href="/membership"
               className="inline-flex items-center justify-center px-8 py-4 border border-accent-dim text-accent font-semibold rounded-lg hover:bg-brand-card transition-all duration-300"
             >
-              Unlock Full Report — $9
-            </a>
+              Become a Member →
+            </Link>
           </div>
         </div>
       </section>

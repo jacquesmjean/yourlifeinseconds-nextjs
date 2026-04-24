@@ -17,9 +17,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
+      url: `${baseUrl}/membership`,
+      changeFrequency: 'weekly',
+      priority: 0.95,
+      lastModified: new Date(),
+    },
+    {
       url: `${baseUrl}/insights`,
       changeFrequency: 'weekly',
       priority: 0.9,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/circle/firesides`,
+      changeFrequency: 'monthly',
+      priority: 0.7,
       lastModified: new Date(),
     },
     {
@@ -62,6 +74,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/cost-of-wait',
     '/tools/regret-minimizer',
     '/tools/legacy-roi',
+    '/tools/legacy-letter',
     '/tools/standard-of-living-time-traveler',
   ].map((slug) => ({
     url: `${baseUrl}${slug}`,
